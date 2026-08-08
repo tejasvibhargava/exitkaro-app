@@ -346,53 +346,51 @@
             ]
         };
 
+        // HELPER FOR SAFE DEEP MERGING (PREVENTS CORRUPTED LOCALSTORAGE ERRORS)
+        function safeMerge(defaults, storedKey) {
+            try {
+                const raw = localStorage.getItem(storedKey);
+                if (!raw) return JSON.parse(JSON.stringify(defaults));
+                const parsed = JSON.parse(raw);
+                if (Array.isArray(defaults)) {
+                    return Array.isArray(parsed) && parsed.length > 0 ? parsed : JSON.parse(JSON.stringify(defaults));
+                }
+                if (typeof defaults === 'object' && defaults !== null) {
+                    const merged = JSON.parse(JSON.stringify(defaults));
+                    if (parsed && typeof parsed === 'object') {
+                        Object.keys(parsed).forEach(k => {
+                            if (parsed[k] !== undefined && parsed[k] !== null) {
+                                merged[k] = parsed[k];
+                            }
+                        });
+                    }
+                    return merged;
+                }
+                return parsed || defaults;
+            } catch(e) {
+                return JSON.parse(JSON.stringify(defaults));
+            }
+        }
+
         // SAFELY INITIALIZE APP STATE WITH FALLBACKS
         const AppState = {
-            settings: (function() {
-                try {
-                    const parsed = JSON.parse(localStorage.getItem('exitkaro_settings'));
-                    return parsed && typeof parsed === 'object' ? Object.assign({}, DefaultState.settings, parsed) : DefaultState.settings;
-                } catch(e) { return DefaultState.settings; }
-            })(),
-            pages: (function() {
-                try {
-                    const parsed = JSON.parse(localStorage.getItem('exitkaro_pages'));
-                    return parsed && typeof parsed === 'object' && parsed.home ? Object.assign({}, DefaultState.pages, parsed) : DefaultState.pages;
-                } catch(e) { return DefaultState.pages; }
-            })(),
-            leads: (function() {
-                try {
-                    const parsed = JSON.parse(localStorage.getItem('exitkaro_leads'));
-                    return Array.isArray(parsed) && parsed.length > 0 ? parsed : DefaultState.leads;
-                } catch(e) { return DefaultState.leads; }
-            })(),
-            posts: (function() {
-                try {
-                    const parsed = JSON.parse(localStorage.getItem('exitkaro_posts'));
-                    return Array.isArray(parsed) && parsed.length > 0 ? parsed : DefaultState.posts;
-                } catch(e) { return DefaultState.posts; }
-            })(),
-            faqs: (function() {
-                try {
-                    const parsed = JSON.parse(localStorage.getItem('exitkaro_faqs'));
-                    return Array.isArray(parsed) && parsed.length > 0 ? parsed : DefaultState.faqs;
-                } catch(e) { return DefaultState.faqs; }
-            })(),
-            locations: (function() {
-                try {
-                    const parsed = JSON.parse(localStorage.getItem('exitkaro_locations'));
-                    return Array.isArray(parsed) && parsed.length > 0 ? parsed : DefaultState.locations;
-                } catch(e) { return DefaultState.locations; }
-            })()
+            settings: safeMerge(DefaultState.settings, 'exitkaro_settings'),
+            pages: safeMerge(DefaultState.pages, 'exitkaro_pages'),
+            leads: safeMerge(DefaultState.leads, 'exitkaro_leads'),
+            posts: safeMerge(DefaultState.posts, 'exitkaro_posts'),
+            faqs: safeMerge(DefaultState.faqs, 'exitkaro_faqs'),
+            locations: safeMerge(DefaultState.locations, 'exitkaro_locations')
         };
 
         function applyGlobalSettings() {
             document.querySelectorAll('.global-phone-val').forEach(el => {
-                if (el) el.innerText = AppState.settings.phone || '';
+                if (el) el.innerText = (AppState.settings && AppState.settings.phone) || DefaultState.settings.phone;
             });
             
-            const phoneClean = (AppState.settings.phone || '').replace(/[^0-9]/g, '');
-            const waClean = (AppState.settings.whatsapp || '').replace(/[^0-9]/g, '');
+            const currentPhone = (AppState.settings && AppState.settings.phone) || DefaultState.settings.phone;
+            const currentWa = (AppState.settings && AppState.settings.whatsapp) || DefaultState.settings.whatsapp;
+            const phoneClean = currentPhone.replace(/[^0-9]/g, '');
+            const waClean = currentWa.replace(/[^0-9]/g, '');
 
             const headerPhone = document.getElementById('header-phone-link');
             if (headerPhone) headerPhone.href = `tel:${phoneClean}`;
@@ -404,10 +402,10 @@
             if (mobileWa) mobileWa.href = `https://wa.me/${waClean}`;
 
             const footerAddr = document.getElementById('footer-address-val');
-            if (footerAddr) footerAddr.innerText = AppState.settings.officeAddress || '';
+            if (footerAddr) footerAddr.innerText = (AppState.settings && AppState.settings.officeAddress) || DefaultState.settings.officeAddress;
 
             const footerEmail = document.getElementById('footer-email-val');
-            if (footerEmail) footerEmail.innerText = AppState.settings.email || '';
+            if (footerEmail) footerEmail.innerText = (AppState.settings && AppState.settings.email) || DefaultState.settings.email;
 
             try {
                 localStorage.setItem('exitkaro_settings', JSON.stringify(AppState.settings));
@@ -440,7 +438,16 @@
     <script>
         const RenderPages = {
             home: function() {
-                const p = AppState.pages.home || DefaultState.pages.home;
+                const p = (AppState.pages && AppState.pages.home) || DefaultState.pages.home;
+                const h1Text = p.h1 || DefaultState.pages.home.h1;
+                const heroSubText = p.heroSub || DefaultState.pages.home.heroSub;
+                const heroTaglineText = p.heroTagline || DefaultState.pages.home.heroTagline;
+                const mortHeadText = p.mortgageHead || DefaultState.pages.home.mortgageHead;
+                const mortBodyText = p.mortgageBody || DefaultState.pages.home.mortgageBody;
+                const nophHeadText = p.noPhotoHead || DefaultState.pages.home.noPhotoHead;
+                const nophBodyText = p.noPhotoBody || DefaultState.pages.home.noPhotoBody;
+                const locationsList = (AppState.locations && AppState.locations.length) ? AppState.locations : DefaultState.locations;
+
                 return `
                     <section class="hero-bg py-12 lg:py-20 border-b border-slate-200">
                         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -453,15 +460,15 @@
                                     </span>
 
                                     <h1 class="text-3xl sm:text-5xl font-black text-slate-900 leading-tight tracking-tight">
-                                        ${p.h1}
+                                        ${h1Text}
                                     </h1>
 
                                     <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
-                                        ${p.heroSub}
+                                        ${heroSubText}
                                     </p>
 
                                     <p class="text-xs text-slate-500 font-semibold italic">
-                                        ${p.heroTagline}
+                                        ${heroTaglineText}
                                     </p>
 
                                     <div class="flex flex-wrap gap-3 justify-center lg:justify-start pt-2">
@@ -469,7 +476,7 @@
                                             Get a Free Property Evaluation
                                             <i class="fa-solid fa-arrow-right text-xs"></i>
                                         </button>
-                                        <a href="tel:${(AppState.settings.phone || '').replace(/[^0-9]/g, '')}" class="px-6 py-3.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-900 font-bold text-sm shadow-sm transition-all flex items-center gap-2">
+                                        <a href="tel:${((AppState.settings && AppState.settings.phone) || DefaultState.settings.phone).replace(/[^0-9]/g, '')}" class="px-6 py-3.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-900 font-bold text-sm shadow-sm transition-all flex items-center gap-2">
                                             <i class="fa-solid fa-headset text-emerald-700"></i>
                                             Talk to Our Team
                                         </a>
@@ -617,11 +624,11 @@
                         <div class="max-w-5xl mx-auto px-4 space-y-6">
                             <div class="text-center space-y-2">
                                 <span class="text-xs font-bold text-emerald-700 uppercase tracking-widest">Mortgage Guidance</span>
-                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">${p.mortgageHead}</h2>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">${mortHeadText}</h2>
                             </div>
 
                             <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
-                                <p>${p.mortgageBody}</p>
+                                <p>${mortBodyText}</p>
                                 <div class="pt-4 text-center">
                                     <button onclick="router.navigate('/sell-property')" class="px-6 py-3 rounded-xl bg-emerald-700 text-white font-extrabold text-xs shadow-md">Discuss My Property Situation</button>
                                 </div>
@@ -635,8 +642,8 @@
                             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                                 <div class="lg:col-span-6 space-y-4">
                                     <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest">Confidential Approach</span>
-                                    <h2 class="text-2xl sm:text-4xl font-black">${p.noPhotoHead}</h2>
-                                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">${p.noPhotoBody}</p>
+                                    <h2 class="text-2xl sm:text-4xl font-black">${nophHeadText}</h2>
+                                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">${nophBodyText}</p>
                                     <button onclick="router.navigate('/sell-property')" class="px-6 py-3.5 rounded-xl bg-emerald-600 text-white font-extrabold text-xs">Start Confidential Enquiry</button>
                                 </div>
 
@@ -665,12 +672,12 @@
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                ${(AppState.locations || DefaultState.locations).map(loc => `
+                                ${locationsList.map(loc => `
                                     <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
-                                        <h3 class="text-xl font-black text-slate-900">${loc.city}</h3>
-                                        <p class="text-xs text-slate-600">${loc.intro}</p>
-                                        <button onclick="router.navigate('/areas/${loc.slug}')" class="w-full py-2.5 rounded-xl bg-white border border-slate-300 font-extrabold text-xs text-slate-800">
-                                            View ${loc.city} Assistance Page
+                                        <h3 class="text-xl font-black text-slate-900">${loc.city || 'City'}</h3>
+                                        <p class="text-xs text-slate-600">${loc.intro || ''}</p>
+                                        <button onclick="router.navigate('/areas/${loc.slug || 'noida'}')" class="w-full py-2.5 rounded-xl bg-white border border-slate-300 font-extrabold text-xs text-slate-800">
+                                            View ${loc.city || 'City'} Assistance Page
                                         </button>
                                     </div>
                                 `).join('')}
@@ -1295,15 +1302,16 @@
     <script>
         const router = {
             navigate: function(path, scroll = true) {
-                window.location.hash = path;
-                this.render(path);
+                const targetPath = path || '/';
+                window.location.hash = targetPath;
+                this.render(targetPath);
                 if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
-                this.updateActiveNav(path);
+                this.updateActiveNav(targetPath);
             },
 
             updateActiveNav: function(path) {
                 document.querySelectorAll('header nav a').forEach(a => a.classList.remove('active-nav-link'));
-                if(path === '/') document.getElementById('nav-link-home')?.classList.add('active-nav-link');
+                if(path === '/' || path === '') document.getElementById('nav-link-home')?.classList.add('active-nav-link');
                 if(path === '/sell-property') document.getElementById('nav-link-sell')?.classList.add('active-nav-link');
                 if(path === '/how-it-works') document.getElementById('nav-link-how')?.classList.add('active-nav-link');
                 if(path === '/why-exitkaro') document.getElementById('nav-link-why')?.classList.add('active-nav-link');
@@ -1317,57 +1325,62 @@
                 if (!viewport) return;
                 
                 try {
-                    if (path === '' || path === '/') {
+                    const cleanPath = (path || '').replace('#', '') || '/';
+                    if (cleanPath === '' || cleanPath === '/') {
                         viewport.innerHTML = RenderPages.home();
-                        document.title = (AppState.pages.home && AppState.pages.home.seoTitle) || DefaultState.pages.home.seoTitle;
+                        document.title = (AppState.pages && AppState.pages.home && AppState.pages.home.seoTitle) || DefaultState.pages.home.seoTitle;
                         const descEl = document.getElementById('head-seo-desc');
-                        if (descEl) descEl.content = (AppState.pages.home && AppState.pages.home.metaDesc) || DefaultState.pages.home.metaDesc;
-                    } else if (path === '/sell-property') {
+                        if (descEl) descEl.content = (AppState.pages && AppState.pages.home && AppState.pages.home.metaDesc) || DefaultState.pages.home.metaDesc;
+                    } else if (cleanPath === '/sell-property') {
                         viewport.innerHTML = RenderPages.sellProperty();
-                        document.title = (AppState.pages.sellProperty && AppState.pages.sellProperty.seoTitle) || DefaultState.pages.sellProperty.seoTitle;
-                    } else if (path === '/how-it-works') {
+                        document.title = (AppState.pages && AppState.pages.sellProperty && AppState.pages.sellProperty.seoTitle) || DefaultState.pages.sellProperty.seoTitle;
+                    } else if (cleanPath === '/how-it-works') {
                         viewport.innerHTML = RenderPages.howItWorks();
-                        document.title = (AppState.pages.howItWorks && AppState.pages.howItWorks.seoTitle) || DefaultState.pages.howItWorks.seoTitle;
-                    } else if (path === '/why-exitkaro') {
+                        document.title = (AppState.pages && AppState.pages.howItWorks && AppState.pages.howItWorks.seoTitle) || DefaultState.pages.howItWorks.seoTitle;
+                    } else if (cleanPath === '/why-exitkaro') {
                         viewport.innerHTML = RenderPages.whyExitkaro();
-                        document.title = (AppState.pages.whyExitkaro && AppState.pages.whyExitkaro.seoTitle) || DefaultState.pages.whyExitkaro.seoTitle;
-                    } else if (path === '/faqs') {
+                        document.title = (AppState.pages && AppState.pages.whyExitkaro && AppState.pages.whyExitkaro.seoTitle) || DefaultState.pages.whyExitkaro.seoTitle;
+                    } else if (cleanPath === '/faqs') {
                         viewport.innerHTML = RenderPages.faqs();
-                        document.title = (AppState.pages.faqs && AppState.pages.faqs.seoTitle) || DefaultState.pages.faqs.seoTitle;
-                    } else if (path === '/areas') {
+                        document.title = (AppState.pages && AppState.pages.faqs && AppState.pages.faqs.seoTitle) || DefaultState.pages.faqs.seoTitle;
+                    } else if (cleanPath === '/areas') {
                         viewport.innerHTML = RenderPages.areasDirectory();
-                    } else if (path.startsWith('/areas/')) {
-                        const slug = path.replace('/areas/', '');
+                    } else if (cleanPath.startsWith('/areas/')) {
+                        const slug = cleanPath.replace('/areas/', '');
                         viewport.innerHTML = RenderPages.locationDetail(slug);
-                    } else if (path === '/blog') {
+                    } else if (cleanPath === '/blog') {
                         viewport.innerHTML = RenderPages.blogList();
-                    } else if (path.startsWith('/blog/')) {
-                        const slug = path.replace('/blog/', '');
+                    } else if (cleanPath.startsWith('/blog/')) {
+                        const slug = cleanPath.replace('/blog/', '');
                         viewport.innerHTML = RenderPages.blogDetail(slug);
-                    } else if (path === '/privacy-policy') {
+                    } else if (cleanPath === '/privacy-policy') {
                         viewport.innerHTML = RenderPages.privacy();
-                    } else if (path === '/admin') {
+                    } else if (cleanPath === '/admin') {
                         viewport.innerHTML = RenderPages.adminDashboard();
                         AdminEngine.init();
                     } else {
                         viewport.innerHTML = RenderPages.home();
                     }
                 } catch(err) {
-                    console.error("Routing execution error:", err);
-                    viewport.innerHTML = RenderPages.home();
+                    console.error("Routing execution fallback:", err);
+                    try {
+                        viewport.innerHTML = RenderPages.home();
+                    } catch(e) {
+                        console.error("Fatal render fallback error", e);
+                    }
                 }
             }
         };
 
         window.addEventListener('hashchange', () => {
-            const path = window.location.hash.replace('#', '') || '/';
-            router.render(path);
+            const rawHash = window.location.hash.replace('#', '') || '/';
+            router.render(rawHash);
         });
 
         window.addEventListener('load', () => {
             applyGlobalSettings();
-            const path = window.location.hash.replace('#', '') || '/';
-            router.navigate(path, false);
+            const rawHash = window.location.hash.replace('#', '') || '/';
+            router.navigate(rawHash, false);
         });
     </script>
 </body>
