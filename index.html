@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="head-seo-title">Sell Your Property in Noida, Ghaziabad & Delhi NCR | ExitKaro</title>
-    <meta id="head-seo-desc" name="description" content="Facing EMI pressure, an outstanding home loan or changing financial circumstances? ExitKaro helps property owners explore practical options for selling residential property.">
-    <link rel="canonical" id="head-canonical" href="https://exitkaro.com/">
-    <meta id="head-robots" name="robots" content="index, follow">
+    <title id="page-seo-title">Sell Your Property in Noida, Ghaziabad & Delhi NCR | ExitKaro</title>
+    <meta id="page-seo-desc" name="description" content="Facing EMI pressure, an outstanding home loan or changing financial circumstances? ExitKaro helps property owners explore practical options for selling residential property.">
+    <link rel="canonical" id="page-canonical" href="https://exitkaro.com/">
+    <meta name="robots" content="index, follow">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -62,7 +62,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-emerald-700 selection:text-white">
 
-    <!-- TOP UTILITY BAR (CLEAN PUBLIC VIEW - NO ADMIN BUTTONS) -->
+    <!-- TOP UTILITY BAR (PUBLIC VIEW - NO ADMIN BUTTONS) -->
     <div class="bg-navy-950 text-slate-300 py-2 px-4 text-xs sticky top-0 z-50 border-b border-slate-800 flex flex-wrap items-center justify-between gap-2 shadow-md">
         <div class="flex items-center gap-3">
             <span class="bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded tracking-wide flex items-center gap-1.5">
@@ -85,7 +85,7 @@
     <!-- MAIN NAVIGATION HEADER -->
     <header class="bg-white/95 border-b border-slate-200 sticky top-[37px] z-40 backdrop-blur-md shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-3">
-            <a href="javascript:void(0)" onclick="router.navigate('/')" class="flex items-center gap-2.5 group">
+            <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center gap-2.5 group">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center text-white text-xl font-black shadow-md shadow-emerald-700/20 group-hover:scale-105 transition-all">
                     <i class="fa-solid fa-building-circle-check"></i>
                 </div>
@@ -96,17 +96,17 @@
             </a>
 
             <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold text-slate-700">
-                <a href="javascript:void(0)" onclick="router.navigate('/')" id="nav-link-home" class="hover:text-emerald-700 transition-colors py-1 active-nav-link">Home</a>
-                <a href="javascript:void(0)" onclick="router.navigate('/sell-property')" id="nav-link-sell" class="hover:text-emerald-700 transition-colors py-1">Sell Property</a>
-                <a href="javascript:void(0)" onclick="router.navigate('/how-it-works')" id="nav-link-how" class="hover:text-emerald-700 transition-colors py-1">How It Works</a>
-                <a href="javascript:void(0)" onclick="router.navigate('/why-exitkaro')" id="nav-link-why" class="hover:text-emerald-700 transition-colors py-1">Why ExitKaro</a>
-                <a href="javascript:void(0)" onclick="router.navigate('/areas')" id="nav-link-areas" class="hover:text-emerald-700 transition-colors py-1">Areas Covered</a>
-                <a href="javascript:void(0)" onclick="router.navigate('/faqs')" id="nav-link-faqs" class="hover:text-emerald-700 transition-colors py-1">FAQs</a>
-                <a href="javascript:void(0)" onclick="router.navigate('/blog')" id="nav-link-blog" class="hover:text-emerald-700 transition-colors py-1">Blog</a>
+                <a href="javascript:void(0)" onclick="navigateTo('home')" id="nav-home" class="hover:text-emerald-700 transition-colors py-1 active-nav-link">Home</a>
+                <a href="javascript:void(0)" onclick="navigateTo('sell')" id="nav-sell" class="hover:text-emerald-700 transition-colors py-1">Sell Property</a>
+                <a href="javascript:void(0)" onclick="navigateTo('how')" id="nav-how" class="hover:text-emerald-700 transition-colors py-1">How It Works</a>
+                <a href="javascript:void(0)" onclick="navigateTo('why')" id="nav-why" class="hover:text-emerald-700 transition-colors py-1">Why ExitKaro</a>
+                <a href="javascript:void(0)" onclick="navigateTo('areas')" id="nav-areas" class="hover:text-emerald-700 transition-colors py-1">Areas Covered</a>
+                <a href="javascript:void(0)" onclick="navigateTo('faqs')" id="nav-faqs" class="hover:text-emerald-700 transition-colors py-1">FAQs</a>
+                <a href="javascript:void(0)" onclick="navigateTo('blog')" id="nav-blog" class="hover:text-emerald-700 transition-colors py-1">Blog</a>
             </nav>
 
             <div class="hidden sm:flex items-center gap-3">
-                <button onclick="router.navigate('/sell-property')" class="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-md shadow-emerald-700/20 transition-all">
+                <button onclick="navigateTo('sell')" class="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-md shadow-emerald-700/20 transition-all">
                     Get a Free Property Evaluation
                 </button>
             </div>
@@ -116,66 +116,583 @@
             </button>
         </div>
 
+        <!-- MOBILE MENU -->
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3 shadow-lg">
-            <a href="javascript:void(0)" onclick="router.navigate('/'); toggleMobileMenu();" class="block py-2 text-sm font-semibold text-slate-800 border-b border-slate-100">Home</a>
-            <a href="javascript:void(0)" onclick="router.navigate('/sell-property'); toggleMobileMenu();" class="block py-2 text-sm font-bold text-emerald-700 border-b border-slate-100">Sell Property</a>
-            <a href="javascript:void(0)" onclick="router.navigate('/how-it-works'); toggleMobileMenu();" class="block py-2 text-sm font-semibold text-slate-800 border-b border-slate-100">How It Works</a>
-            <a href="javascript:void(0)" onclick="router.navigate('/why-exitkaro'); toggleMobileMenu();" class="block py-2 text-sm font-semibold text-slate-800 border-b border-slate-100">Why ExitKaro</a>
-            <a href="javascript:void(0)" onclick="router.navigate('/areas'); toggleMobileMenu();" class="block py-2 text-sm font-semibold text-slate-800 border-b border-slate-100">Areas We Serve</a>
-            <a href="javascript:void(0)" onclick="router.navigate('/faqs'); toggleMobileMenu();" class="block py-2 text-sm font-semibold text-slate-800 border-b border-slate-100">FAQs</a>
-            <a href="javascript:void(0)" onclick="router.navigate('/blog'); toggleMobileMenu();" class="block py-2 text-sm font-semibold text-slate-800 border-b border-slate-100">Blog</a>
+            <a href="javascript:void(0)" onclick="navigateTo('home'); toggleMobileMenu();" class="block py-2 text-sm font-semibold text-slate-800 border-b border-slate-100">Home</a>
+            <a href="javascript:void(0)" onclick="navigateTo('sell'); toggleMobileMenu();" class="block py-2 text-sm font-bold text-emerald-700 border-b border-slate-100">Sell Property</a>
+            <a href="javascript:void(0)" onclick="navigateTo('how'); toggleMobileMenu();" class="block py-2 text-sm font-semibold text-slate-800 border-b border-slate-100">How It Works</a>
+            <a href="javascript:void(0)" onclick="navigateTo('why'); toggleMobileMenu();" class="block py-2 text-sm font-semibold text-slate-800 border-b border-slate-100">Why ExitKaro</a>
+            <a href="javascript:void(0)" onclick="navigateTo('areas'); toggleMobileMenu();" class="block py-2 text-sm font-semibold text-slate-800 border-b border-slate-100">Areas We Serve</a>
+            <a href="javascript:void(0)" onclick="navigateTo('faqs'); toggleMobileMenu();" class="block py-2 text-sm font-semibold text-slate-800 border-b border-slate-100">FAQs</a>
+            <a href="javascript:void(0)" onclick="navigateTo('blog'); toggleMobileMenu();" class="block py-2 text-sm font-semibold text-slate-800 border-b border-slate-100">Blog</a>
             
             <div class="pt-2 flex flex-col gap-2">
-                <button onclick="router.navigate('/sell-property'); toggleMobileMenu();" class="w-full py-3 rounded-xl bg-emerald-700 text-white font-bold text-xs text-center shadow-md">
+                <button onclick="navigateTo('sell'); toggleMobileMenu();" class="w-full py-3 rounded-xl bg-emerald-700 text-white font-bold text-xs text-center shadow-md">
                     Get a Free Property Evaluation
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- MAIN VIEWPORT -->
+    <!-- MAIN CONTENT VIEWPORTS CONTAINER -->
     <main id="app-viewport" class="flex-1">
-        <section class="hero-bg py-12 lg:py-20 border-b border-slate-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    
-                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-300 text-emerald-900 text-xs font-bold">
-                            <i class="fa-solid fa-shield-halved text-emerald-700"></i>
-                            DELHI NCR PROPERTY SALE ASSISTANCE
-                        </span>
 
-                        <h1 class="text-3xl sm:text-5xl font-black text-slate-900 leading-tight tracking-tight">
-                            Looking to Sell Your Property in Noida, Ghaziabad or Delhi NCR?
-                        </h1>
+        <!-- ================= PAGE 1: HOMEPAGE ================= -->
+        <div id="page-home" class="page-view">
+            <!-- HERO SECTION -->
+            <section class="hero-bg py-12 lg:py-20 border-b border-slate-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-300 text-emerald-900 text-xs font-bold">
+                                <i class="fa-solid fa-shield-halved text-emerald-700"></i>
+                                DELHI NCR PROPERTY SALE ASSISTANCE
+                            </span>
 
-                        <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
-                            Facing EMI pressure, an outstanding home loan or changing financial circumstances? ExitKaro helps property owners explore practical options for selling their residential property. Share your details and our team will contact you confidentially.
-                        </p>
+                            <h1 id="home-h1-display" class="text-3xl sm:text-5xl font-black text-slate-900 leading-tight tracking-tight">
+                                Looking to Sell Your Property in Noida, Ghaziabad or Delhi NCR?
+                            </h1>
 
-                        <p class="text-xs text-slate-500 font-semibold italic">
-                            Property sale assistance for flats, apartments, builder floors and houses.
-                        </p>
+                            <p id="home-intro-display" class="text-slate-700 text-sm sm:text-base leading-relaxed">
+                                Facing EMI pressure, an outstanding home loan or changing financial circumstances? ExitKaro helps property owners explore practical options for selling their residential property. Share your details and our team will contact you confidentially.
+                            </p>
 
-                        <div class="flex flex-wrap gap-3 justify-center lg:justify-start pt-2">
-                            <button onclick="router.navigate('/sell-property')" class="px-6 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-sm shadow-xl shadow-emerald-700/20 transition-all flex items-center gap-2">
-                                Get a Free Property Evaluation
-                                <i class="fa-solid fa-arrow-right text-xs"></i>
-                            </button>
-                            <a href="tel:+919876543210" class="px-6 py-3.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-900 font-bold text-sm shadow-sm transition-all flex items-center gap-2">
-                                <i class="fa-solid fa-headset text-emerald-700"></i>
-                                Talk to Our Team
-                            </a>
+                            <p class="text-xs text-slate-500 font-semibold italic">
+                                Property sale assistance for flats, apartments, builder floors and houses.
+                            </p>
+
+                            <div class="flex flex-wrap gap-3 justify-center lg:justify-start pt-2">
+                                <button onclick="navigateTo('sell')" class="px-6 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-sm shadow-xl shadow-emerald-700/20 transition-all flex items-center gap-2">
+                                    Get a Free Property Evaluation
+                                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                                </button>
+                                <a href="tel:+919876543210" class="px-6 py-3.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-900 font-bold text-sm shadow-sm transition-all flex items-center gap-2">
+                                    <i class="fa-solid fa-headset text-emerald-700"></i>
+                                    Talk to Our Team
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 2-STEP HERO FORM -->
+                        <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-2xl relative">
+                            <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
+                                <div>
+                                    <span class="text-[10px] uppercase font-extrabold text-emerald-700 tracking-wider">Confidential Form</span>
+                                    <h3 class="text-lg font-black text-slate-900">Tell Us About Your Property</h3>
+                                </div>
+                                <span id="hero-step-num" class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center text-sm font-bold">1/2</span>
+                            </div>
+
+                            <form onsubmit="submitHeroLead(event)" class="space-y-4">
+                                <div id="hero-step-1" class="space-y-3.5">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 mb-1">Full Name *</label>
+                                        <input type="text" id="h-name" required placeholder="Enter your full name" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 outline-none focus:bg-white focus:border-emerald-600">
+                                    </div>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">Mobile Number *</label>
+                                            <input type="tel" id="h-phone" required placeholder="10-digit mobile" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 outline-none focus:bg-white focus:border-emerald-600">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">City *</label>
+                                            <select id="h-city" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 outline-none">
+                                                <option value="Noida">Noida</option>
+                                                <option value="Ghaziabad">Ghaziabad</option>
+                                                <option value="Delhi NCR">Delhi NCR</option>
+                                                <option value="Gurgaon">Gurgaon</option>
+                                                <option value="Faridabad">Faridabad</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">Locality / Sector *</label>
+                                            <input type="text" id="h-locality" required placeholder="e.g. Sector 137 / Indirapuram" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 outline-none focus:bg-white focus:border-emerald-600">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">Property Type *</label>
+                                            <select id="h-type" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 outline-none">
+                                                <option value="Flat / Apartment">Flat / Apartment</option>
+                                                <option value="Builder Floor">Builder Floor</option>
+                                                <option value="House / Villa">House / Villa</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" onclick="nextStepHero()" class="w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-xs shadow-lg shadow-emerald-700/20 flex items-center justify-center gap-2">
+                                        Next: Loan & Property Details <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </div>
+
+                                <div id="hero-step-2" class="space-y-3.5 hidden">
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">BHK Configuration</label>
+                                            <select id="h-bhk" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none">
+                                                <option value="1 BHK">1 BHK</option>
+                                                <option value="2 BHK" selected>2 BHK</option>
+                                                <option value="3 BHK">3 BHK</option>
+                                                <option value="4+ BHK">4+ BHK</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">Approx Value <span class="text-[10px] text-slate-400 font-normal">(Optional)</span></label>
+                                            <input type="number" id="h-val" placeholder="e.g. 7500000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none">
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">Loan Outstanding <span class="text-[10px] text-slate-400 font-normal">(Optional)</span></label>
+                                            <input type="number" id="h-loan" placeholder="e.g. 5000000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">Monthly EMI <span class="text-[10px] text-slate-400 font-normal">(Optional)</span></label>
+                                            <input type="number" id="h-emi" placeholder="e.g. 45000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none">
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">Lending Bank <span class="text-[10px] text-slate-400 font-normal">(Optional)</span></label>
+                                            <input type="text" id="h-bank" placeholder="e.g. HDFC / SBI" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-1">When should we call? *</label>
+                                            <select id="h-time" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none">
+                                                <option value="Anytime">Anytime</option>
+                                                <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
+                                                <option value="Evening (4 PM - 8 PM)">Evening (4 PM - 8 PM)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="pt-1 flex items-start gap-2">
+                                        <input type="checkbox" id="h-consent" required checked class="mt-0.5 rounded border-slate-300 text-emerald-700">
+                                        <label for="h-consent" class="text-[11px] text-slate-600 leading-tight">
+                                            By submitting, you agree to be contacted by ExitKaro regarding your property enquiry. Read our <a href="javascript:void(0)" onclick="navigateTo('privacy')" class="text-emerald-700 underline font-bold">Privacy Policy</a>.
+                                        </label>
+                                    </div>
+
+                                    <div class="flex gap-2">
+                                        <button type="button" onclick="prevStepHero()" class="w-1/3 py-3 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs">Back</button>
+                                        <button type="submit" class="w-2/3 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-xs shadow-lg">Submit Property Enquiry</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                </div>
+            </section>
 
-                    <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-2xl relative">
-                        <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
-                            <div>
-                    <h4 class="font-extrabold text-white text-xs uppercase tracking-wider mb-3.5">Legal & Policy</h4>
-                    <ul class="space-y-2 text-slate-400">
-                        <li><a href="javascript:void(0)" onclick="router.navigate('/blog')" class="hover:text-emerald-400">Blog & Knowledge Base</a></li>
-                        <li><a href="javascript:void(0)" onclick="router.navigate('/privacy-policy')" class="hover:text-emerald-400">Privacy Policy</a></li>
+            <!-- TRUST STRIP -->
+            <section class="py-10 bg-white border-b border-slate-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-map-location-dot"></i></div>
+                            <div><h4 class="font-extrabold text-slate-900 text-sm">Delhi NCR Focused</h4><p class="text-xs text-slate-600 mt-0.5">Specialized local assistance across Noida, Ghaziabad and NCR markets.</p></div>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-user-shield"></i></div>
+                            <div><h4 class="font-extrabold text-slate-900 text-sm">Confidential Enquiries</h4><p class="text-xs text-slate-600 mt-0.5">Your personal and financial details remain private and secure.</p></div>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-clipboard-check"></i></div>
+                            <div><h4 class="font-extrabold text-slate-900 text-sm">Property Evaluation</h4><p class="text-xs text-slate-600 mt-0.5">Physical property assessment to understand your options practically.</p></div>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-handshake"></i></div>
+                            <div><h4 class="font-extrabold text-slate-900 text-sm">Personal Assistance</h4><p class="text-xs text-slate-600 mt-0.5">Direct team support from enquiry submission through next steps.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MORTGAGE GUIDANCE SECTION -->
+            <section class="py-16 bg-slate-50 border-b border-slate-200">
+                <div class="max-w-5xl mx-auto px-4 space-y-6">
+                    <div class="text-center space-y-2">
+                        <span class="text-xs font-bold text-emerald-700 uppercase tracking-widest">Mortgage Guidance</span>
+                        <h2 id="mortgage-head-display" class="text-2xl sm:text-3xl font-black text-slate-900">Can You Sell a Property With an Outstanding Home Loan?</h2>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        <p id="mortgage-body-display">Yes. A property with an outstanding home loan may be sold, subject to the lender's requirements and the applicable transaction process across Indian financial institutions. If you are considering selling a residential property while your home loan is still active, the first step is to understand your current outstanding loan principal, current local property market value, and loan closure documentation requirements.</p>
+                        <div class="pt-4 text-center">
+                            <button onclick="navigateTo('sell')" class="px-6 py-3 rounded-xl bg-emerald-700 text-white font-extrabold text-xs shadow-md">Discuss My Property Situation</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NO PHOTO SECTION -->
+            <section class="py-16 bg-navy-900 text-white border-b border-slate-800">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-6 space-y-4">
+                            <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest">Confidential Approach</span>
+                            <h2 id="nophoto-head-display" class="text-2xl sm:text-4xl font-black">No Public Listing. No Photo Upload Required.</h2>
+                            <p id="nophoto-body-display" class="text-slate-300 text-xs sm:text-sm leading-relaxed">Unlike a traditional property portal, ExitKaro does not require you to publicly list your property or upload property photographs just to start an enquiry. Simply share your basic details with our team. If your property is suitable for further evaluation, our team can coordinate a property visit and collect the required information directly.</p>
+                            <button onclick="navigateTo('sell')" class="px-6 py-3.5 rounded-xl bg-emerald-600 text-white font-extrabold text-xs">Start Confidential Enquiry</button>
+                        </div>
+
+                        <div class="lg:col-span-6 bg-navy-950 p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-3 text-xs">
+                            <h4 class="font-bold text-amber-400 uppercase tracking-wider text-xs mb-2">What Happens After You Submit Details?</h4>
+                            <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3"><span class="font-bold text-emerald-400">1.</span> You provide basic property location & contact details.</div>
+                            <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3"><span class="font-bold text-emerald-400">2.</span> Our team contacts you confidentially.</div>
+                            <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3"><span class="font-bold text-emerald-400">3.</span> We understand property type, timeline, and expectations.</div>
+                            <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3"><span class="font-bold text-emerald-400">4.</span> If required, our team coordinates an on-ground site visit.</div>
+                            <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3"><span class="font-bold text-emerald-400">5.</span> Property information and documents are reviewed.</div>
+                            <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3"><span class="font-bold text-emerald-400">6.</span> Our team discusses the possible way forward.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AREAS SECTION -->
+            <section class="py-16 bg-white border-b border-slate-200">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-700 uppercase tracking-widest">Regional Coverage</span>
+                            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Property Sale Assistance Across Delhi NCR</h2>
+                        </div>
+                        <button onclick="navigateTo('areas')" class="text-xs font-bold text-emerald-700 hover:underline">View All Regional Hubs →</button>
+                    </div>
+
+                    <div id="home-areas-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 2: SELL PROPERTY ================= -->
+        <div id="page-sell" class="page-view hidden py-12 bg-slate-50">
+            <div class="max-w-3xl mx-auto px-4">
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl space-y-6">
+                    <h1 class="text-2xl font-black text-slate-900">Get a Free Property Evaluation</h1>
+                    <p class="text-xs text-slate-600 leading-relaxed">Share your property location and situation with our assessment team for direct confidential guidance.</p>
+                    <form onsubmit="submitDedicatedSellForm(event)" class="space-y-4 text-xs">
+                        <div class="grid grid-cols-2 gap-3">
+                            <input type="text" id="sp-name" required placeholder="Full Name *" class="bg-slate-50 border p-2.5 rounded-xl outline-none">
+                            <input type="tel" id="sp-phone" required placeholder="Mobile Number *" class="bg-slate-50 border p-2.5 rounded-xl outline-none">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <select id="sp-city" class="bg-slate-50 border p-2.5 rounded-xl outline-none">
+                                <option value="Noida">Noida</option>
+                                <option value="Ghaziabad">Ghaziabad</option>
+                                <option value="Delhi NCR">Delhi NCR</option>
+                            </select>
+                            <input type="text" id="sp-locality" required placeholder="Locality / Sector *" class="bg-slate-50 border p-2.5 rounded-xl outline-none">
+                        </div>
+                        <button type="submit" class="w-full py-3.5 bg-emerald-700 text-white font-extrabold rounded-xl shadow">Submit Property Enquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 3: HOW IT WORKS ================= -->
+        <div id="page-how" class="page-view hidden py-12 bg-white">
+            <div class="max-w-3xl mx-auto px-4 space-y-6">
+                <h1 class="text-2xl font-black text-slate-900">How ExitKaro Works</h1>
+                <p class="text-xs text-slate-600 leading-relaxed">A practical 5-step process designed to help property owners explore their options without public listing or stress.</p>
+                <div class="space-y-3 text-xs">
+                    <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 1:</strong> Share your basic property details confidentially.</div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 2:</strong> Our team calls to understand your loan status & expectations.</div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 3:</strong> On-ground site evaluation by local team if applicable.</div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 4:</strong> Review property market position & legal documents.</div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 5:</strong> Discuss structured property sale options.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 4: WHY EXITKARO ================= -->
+        <div id="page-why" class="page-view hidden py-12 bg-white">
+            <div class="max-w-3xl mx-auto px-4 space-y-6">
+                <h1 class="text-2xl font-black text-slate-900">Why Property Owners Choose ExitKaro</h1>
+                <p class="text-xs text-slate-600 leading-relaxed">We provide dedicated local market guidance, complete confidentiality, and no public property listings.</p>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 5: AREAS COVERED ================= -->
+        <div id="page-areas" class="page-view hidden py-12 bg-white">
+            <div class="max-w-4xl mx-auto px-4 space-y-6">
+                <h1 class="text-2xl font-black">Delhi NCR Regional Service Hubs</h1>
+                <div id="areas-directory-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 6: FAQS ================= -->
+        <div id="page-faqs" class="page-view hidden py-12 bg-white">
+            <div class="max-w-4xl mx-auto px-4 space-y-6">
+                <h1 class="text-2xl font-black text-slate-900">Frequently Asked Questions</h1>
+                <p class="text-xs text-slate-600 leading-relaxed">Get answers to common queries regarding property evaluations, home loans, and our confidential consultation process.</p>
+                <div id="faqs-list-container" class="space-y-4">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 7: BLOG ================= -->
+        <div id="page-blog" class="page-view hidden py-12 bg-slate-50">
+            <div class="max-w-4xl mx-auto px-4 space-y-6">
+                <h1 class="text-2xl font-black">ExitKaro Knowledge Hub</h1>
+                <div id="blog-posts-container" class="space-y-4">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 8: BLOG DETAIL ================= -->
+        <div id="page-blog-detail" class="page-view hidden py-12 bg-white">
+            <div class="max-w-3xl mx-auto px-4 space-y-4">
+                <button onclick="navigateTo('blog')" class="text-xs text-emerald-700 font-bold mb-2">← Back to Articles</button>
+                <span id="bd-cat" class="text-xs font-bold text-emerald-700 uppercase tracking-widest block"></span>
+                <h1 id="bd-title" class="text-2xl sm:text-3xl font-black text-slate-900"></h1>
+                <p id="bd-author" class="text-xs text-slate-500"></p>
+                <div id="bd-content" class="prose text-xs sm:text-sm text-slate-700 leading-relaxed space-y-3 pt-4 border-t border-slate-100"></div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 9: PRIVACY POLICY ================= -->
+        <div id="page-privacy" class="page-view hidden py-12 bg-white">
+            <div class="max-w-3xl mx-auto px-4 space-y-3">
+                <h1 class="text-2xl font-bold">Privacy Policy</h1>
+                <p class="text-xs text-slate-600 leading-relaxed">Your personal information and property details are kept strictly private and confidential. We do not sell or publish customer data.</p>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 10: ADMIN PORTAL (LOCKED WITH PASSCODE) ================= -->
+        <div id="page-admin" class="page-view hidden bg-slate-900 text-slate-100 min-h-screen py-8 px-4 sm:px-6 lg:px-8 font-sans">
+            
+            <!-- ADMIN LOGIN SCREEN (IF NOT AUTHENTICATED) -->
+            <div id="admin-login-box" class="max-w-md mx-auto my-12 bg-slate-950 p-8 rounded-3xl border border-slate-800 text-center space-y-6 shadow-2xl">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mx-auto">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-extrabold text-white">ExitKaro Staff Login</h2>
+                    <p class="text-xs text-slate-400 mt-1">Enter your admin credentials to access lead CRM & site settings.</p>
+                </div>
+                <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-xs text-left">
+                    <div>
+                        <label class="block text-slate-400 mb-1">Username ID</label>
+                        <input type="text" id="admin-user-input" required value="admin" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">Password</label>
+                        <input type="password" id="admin-pass-input" required value="admin123" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white outline-none">
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs shadow-lg">Authenticate & Access Dashboard</button>
+                </form>
+                <p class="text-[10px] text-slate-500">Default Credentials for Demo: ID: <strong>admin</strong> | Pass: <strong>admin123</strong></p>
+            </div>
+
+            <!-- MAIN ADMIN DASHBOARD PANEL (SHOWN ONCE LOGGED IN) -->
+            <div id="admin-panel-box" class="hidden max-w-7xl mx-auto space-y-6">
+                
+                <div class="bg-slate-950 border border-slate-800 rounded-3xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[10px] font-extrabold uppercase">Full Content Management System</span>
+                        <h1 class="text-2xl font-black text-white mt-1">ExitKaro Control Suite</h1>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="exportCSV()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow">
+                            <i class="fa-solid fa-file-excel mr-1"></i> Export Leads CSV
+                        </button>
+                        <button onclick="handleAdminLogout()" class="px-3.5 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold shadow">
+                            <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CMS Navigation Tabs -->
+                <div class="flex gap-2 border-b border-slate-800 pb-2 text-xs font-bold overflow-x-auto">
+                    <button onclick="switchAdminTab('crm')" id="atab-crm" class="px-4 py-2 rounded-xl bg-emerald-700 text-white font-extrabold">
+                        <i class="fa-solid fa-users mr-1"></i> Leads CRM (<span id="admin-lead-count">0</span>)
+                    </button>
+                    <button onclick="switchAdminTab('content')" id="atab-content" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300">
+                        <i class="fa-solid fa-pen-to-square mr-1"></i> Edit All Page Text
+                    </button>
+                    <button onclick="switchAdminTab('seo')" id="atab-seo" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300">
+                        <i class="fa-solid fa-magnifying-glass mr-1"></i> SEO Meta & Titles
+                    </button>
+                    <button onclick="switchAdminTab('blogs')" id="atab-blogs" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300">
+                        <i class="fa-solid fa-newspaper mr-1"></i> Blogs Manager
+                    </button>
+                    <button onclick="switchAdminTab('faqs')" id="atab-faqs" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300">
+                        <i class="fa-solid fa-circle-question mr-1"></i> FAQs Manager
+                    </button>
+                    <button onclick="switchAdminTab('settings')" id="atab-settings" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300">
+                        <i class="fa-solid fa-gear mr-1"></i> Global Phone/Contacts
+                    </button>
+                </div>
+
+                <!-- TAB 1: LEADS CRM -->
+                <div id="apanel-crm" class="space-y-4">
+                    <div class="overflow-x-auto bg-slate-950 rounded-2xl border border-slate-800">
+                        <table class="w-full text-left text-xs text-slate-300 border-collapse">
+                            <thead>
+                                <tr class="bg-slate-900 text-slate-400 border-b border-slate-800">
+                                    <th class="p-3">ID & Date</th>
+                                    <th class="p-3">Customer Name</th>
+                                    <th class="p-3">Contact</th>
+                                    <th class="p-3">Location</th>
+                                    <th class="p-3">Property & Loan Info</th>
+                                    <th class="p-3">Status</th>
+                                    <th class="p-3 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-crm-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 2: FULL CONTENT CMS -->
+                <div id="apanel-content" class="hidden space-y-4 bg-slate-950 p-6 rounded-2xl border border-slate-800 text-xs">
+                    <h3 class="font-extrabold text-white text-sm">Select Page to Edit Copy</h3>
+                    <select id="acms-select-page" onchange="loadPageContent()" class="w-full sm:w-64 bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 outline-none">
+                        <option value="home">Homepage (`/`)</option>
+                        <option value="sellProperty">Sell Property (`/sell-property`)</option>
+                        <option value="howItWorks">How It Works (`/how-it-works`)</option>
+                        <option value="whyExitkaro">Why ExitKaro (`/why-exitkaro`)</option>
+                        <option value="faqs">FAQs Page (`/faqs`)</option>
+                    </select>
+
+                    <div class="space-y-3 pt-2">
+                        <div>
+                            <label class="block text-slate-400 mb-1">Page Main H1 Heading</label>
+                            <input type="text" id="acms-h1" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">Hero Subtitle / Intro Paragraph</label>
+                            <textarea id="acms-intro" rows="3" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">Mortgage Guidance Section Title</label>
+                            <input type="text" id="acms-mortgage-head" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">Mortgage Guidance Body Text</label>
+                            <textarea id="acms-mortgage-body" rows="3" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">No-Photo Confidential Section Title</label>
+                            <input type="text" id="acms-nophoto-head" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">No-Photo Confidential Body Text</label>
+                            <textarea id="acms-nophoto-body" rows="3" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none"></textarea>
+                        </div>
+                        <button onclick="savePageContent()" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold">Publish Page Copy Live</button>
+                    </div>
+                </div>
+
+                <!-- TAB 3: SEO META CMS -->
+                <div id="apanel-seo" class="hidden space-y-4 bg-slate-950 p-6 rounded-2xl border border-slate-800 text-xs">
+                    <h3 class="font-extrabold text-white text-sm">On-Page SEO Meta Tag Controls</h3>
+                    <select id="aseo-select-page" onchange="loadSeoMeta()" class="w-full sm:w-64 bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 outline-none">
+                        <option value="home">Homepage SEO</option>
+                        <option value="sellProperty">Sell Property SEO</option>
+                        <option value="howItWorks">How It Works SEO</option>
+                        <option value="whyExitkaro">Why ExitKaro SEO</option>
+                        <option value="faqs">FAQs SEO</option>
+                    </select>
+
+                    <div class="space-y-3 pt-2">
+                        <div>
+                            <label class="block text-slate-400 mb-1">Page SEO Title (`&lt;title&gt;` Tag)</label>
+                            <input type="text" id="aseo-title" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">Meta Description (`&lt;meta name="description"&gt;`)</label>
+                            <textarea id="aseo-desc" rows="3" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none"></textarea>
+                        </div>
+                        <button onclick="saveSeoMeta()" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold">Save SEO Meta Live</button>
+                    </div>
+                </div>
+
+                <!-- TAB 4: BLOGS MANAGER -->
+                <div id="apanel-blogs" class="hidden space-y-4 bg-slate-950 p-6 rounded-2xl border border-slate-800 text-xs">
+                    <h3 class="font-extrabold text-white text-sm">Add New Blog Article</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <input type="text" id="ablog-title" placeholder="Blog Title" class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white">
+                        <input type="text" id="ablog-slug" placeholder="URL Slug (e.g. can-you-sell-property)" class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white">
+                    </div>
+                    <textarea id="ablog-excerpt" placeholder="Short Excerpt" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white"></textarea>
+                    <textarea id="ablog-content" rows="6" placeholder="Full Article Body (Supports HTML tags)" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white"></textarea>
+                    <button onclick="addBlog()" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold">Publish Blog Post</button>
+                </div>
+
+                <!-- TAB 5: FAQS MANAGER -->
+                <div id="apanel-faqs" class="hidden space-y-4 bg-slate-950 p-6 rounded-2xl border border-slate-800 text-xs">
+                    <h3 class="font-extrabold text-white text-sm">Add New FAQ Item</h3>
+                    <input type="text" id="afaq-q" placeholder="Question" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white">
+                    <textarea id="afaq-a" rows="3" placeholder="Answer" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white"></textarea>
+                    <button onclick="addFAQ()" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold">Add FAQ Live</button>
+                </div>
+
+                <!-- TAB 6: GLOBAL SETTINGS -->
+                <div id="apanel-settings" class="hidden space-y-4 bg-slate-950 p-6 rounded-2xl border border-slate-800 max-w-xl text-xs">
+                    <h3 class="font-extrabold text-white text-sm">Global Site Contacts</h3>
+                    <div>
+                        <label class="block text-slate-400 mb-1">Phone Number</label>
+                        <input type="text" id="set-phone" class="w-full bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">WhatsApp Number</label>
+                        <input type="text" id="set-wa" class="w-full bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">Support Email</label>
+                        <input type="email" id="set-email" class="w-full bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">Office Address</label>
+                        <input type="text" id="set-addr" class="w-full bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 outline-none">
+                    </div>
+                    <button onclick="saveSettings()" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold">Save Contact Info Live Across Entire Site</button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-950 text-slate-300 border-t border-slate-800 pt-12 pb-24 lg:pb-12 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-slate-800">
+                <div class="space-y-3">
+                    <span class="text-xl font-black text-white">Exit<span class="text-emerald-400">Karo</span><span class="text-xs text-amber-500 font-bold ml-0.5">.com</span></span>
+                    <p class="text-slate-400 text-xs">Dedicated property sale assistance for residential property owners across Noida, Ghaziabad, and Delhi NCR.</p>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-white mb-3 uppercase tracking-wider text-[11px]">Quick Links</h4>
+                    <ul class="space-y-1.5 text-slate-400">
+                        <li><a href="javascript:void(0)" onclick="navigateTo('sell')" class="hover:text-emerald-400">Sell Property</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateTo('how')" class="hover:text-emerald-400">How It Works</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateTo('why')" class="hover:text-emerald-400">Why ExitKaro</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateTo('faqs')" class="hover:text-emerald-400">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-white mb-3 uppercase tracking-wider text-[11px]">Delhi NCR Regions</h4>
+                    <ul class="space-y-1.5 text-slate-400">
+                        <li><a href="javascript:void(0)" onclick="navigateTo('areas')" class="hover:text-emerald-400">Noida & Greater Noida</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateTo('areas')" class="hover:text-emerald-400">Ghaziabad & Indirapuram</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateTo('areas')" class="hover:text-emerald-400">Delhi NCR Areas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-white mb-3 uppercase tracking-wider text-[11px]">Legal & Policy</h4>
+                    <ul class="space-y-1.5 text-slate-400">
+                        <li><a href="javascript:void(0)" onclick="navigateTo('blog')" class="hover:text-emerald-400">Blog & Knowledge Base</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateTo('privacy')" class="hover:text-emerald-400">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -190,7 +707,7 @@
         </div>
     </footer>
 
-    <!-- STICKY MOBILE BAR -->
+    <!-- STICKY MOBILE CONVERSION BAR -->
     <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-navy-950 border-t border-slate-800 p-2.5 flex items-center gap-2 shadow-2xl">
         <a id="mobile-call-btn" href="tel:+919876543210" class="flex-1 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 border border-slate-700">
             <i class="fa-solid fa-phone text-emerald-400"></i> Call Now
@@ -211,9 +728,8 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT STATE ENGINE & SAFE ARRAYS -->
+    <!-- JAVASCRIPT STATE ENGINE & SAFE ROUTER -->
     <script>
-        // DEFAULTS FOR FALLBACK
         const DefaultState = {
             settings: {
                 phone: "+91 98765 43210",
@@ -227,7 +743,6 @@
                     metaDesc: "Facing EMI pressure, an outstanding home loan or changing financial circumstances? ExitKaro helps property owners explore practical options for selling residential property.",
                     h1: "Looking to Sell Your Property in Noida, Ghaziabad or Delhi NCR?",
                     heroSub: "Facing EMI pressure, an outstanding home loan or changing financial circumstances? ExitKaro helps property owners explore practical options for selling their residential property. Share your details and our team will contact you confidentially.",
-                    heroTagline: "Property sale assistance for flats, apartments, builder floors and houses.",
                     mortgageHead: "Can You Sell a Property With an Outstanding Home Loan?",
                     mortgageBody: "Yes. A property with an outstanding home loan may be sold, subject to the lender's requirements and the applicable transaction process across Indian financial institutions. If you are considering selling a residential property while your home loan is still active, the first step is to understand your current outstanding loan principal, current local property market value, and loan closure documentation requirements.",
                     noPhotoHead: "No Public Listing. No Photo Upload Required.",
@@ -285,63 +800,47 @@
                     author: "ExitKaro Editorial Team",
                     authorBio: "Written by the ExitKaro Real Estate & Mortgage Guidance Research Group.",
                     excerpt: "A comprehensive guide on how property owners in Noida, Ghaziabad, and Delhi NCR can legally sell an apartment or house with an active bank loan.",
-                    seoTitle: "Can You Sell a Property With an Outstanding Home Loan? | ExitKaro",
-                    metaDesc: "Learn how property owners in Delhi NCR can sell a mortgaged flat, clear outstanding bank loans, and handle loan closure documentation.",
                     content: `
-                        <h2>Yes, You Can Sell a Property With an Existing Home Loan</h2>
+                        <p class="font-bold text-slate-800">Yes, You Can Sell a Property With an Existing Home Loan</p>
                         <p>Selling a property with an active home loan is a standard transaction in India. Lenders hold the original title deeds as security, but property owners retain full legal ownership rights to sell the property, clear the outstanding principal, and obtain a formal release from the bank.</p>
-                        
-                        <h2>How Does the Home Loan Get Settled During a Sale?</h2>
+                        <p class="font-bold text-slate-800 mt-4">How Does the Home Loan Get Settled During a Sale?</p>
                         <p>When a buyer is identified, the seller requests an Official Outstanding Dues Letter (Foreclosure Statement) from the lending bank. During the sale transaction, the outstanding loan amount is paid directly to the bank from the sale proceeds. Upon settlement, the bank releases the original title deeds and issues a No Dues Certificate (NOC).</p>
-                        
-                        <h2>What Documents May Be Required?</h2>
-                        <p>Key documents typically required include your original Sale Deed, Possession Letter, latest Bank Statement showing loan payments, Outstanding Dues Statement, and property tax receipts.</p>
                     `
                 }
             ],
             faqs: [
                 { id: 1, q: "Can I sell my property if there is an outstanding home loan?", a: "Yes. Many property owners in Noida, Ghaziabad, and Delhi NCR sell residential properties with an active home loan. The outstanding loan balance is settled directly with your bank from the sale proceeds." },
                 { id: 2, q: "What happens if I am struggling to pay my home loan EMI?", a: "If monthly EMI payments are becoming difficult due to job loss, business pressure, or personal circumstances, evaluating your property's market position early allows you to explore selling the property before bank notices accumulate." },
-                { id: 3, q: "Do I need to upload property photos online?", a: "No. ExitKaro does NOT require you to upload any photographs publicly. You simply share basic property information, and our team handles next steps directly." },
-                { id: 4, q: "Which areas in Delhi NCR do you cover?", a: "We actively serve major residential hubs across Noida, Ghaziabad, Delhi, Gurgaon, and Faridabad." }
+                { id: 3, q: "Do I need to upload property photos online?", a: "No. ExitKaro does NOT require you to upload any photographs publicly. You simply share basic property information, and our team handles next steps directly." }
             ],
             locations: [
                 {
                     slug: "noida",
                     city: "Noida",
-                    seoTitle: "Sell Your Property in Noida | ExitKaro",
-                    metaDesc: "Confidential property sale assistance in Noida Sector 62, Sector 137, Sector 75, Sector 150, and Greater Noida West.",
-                    h1: "Sell Your Property in Noida",
                     intro: "Noida and Greater Noida represent major residential townships with thousands of apartment owners. If maintaining your home loan EMI has become difficult due to changing financial circumstances, ExitKaro offers personal local guidance.",
                     localities: ["Sector 62", "Sector 137", "Sector 75", "Sector 78", "Sector 150", "Greater Noida West"]
                 },
                 {
                     slug: "ghaziabad",
                     city: "Ghaziabad",
-                    seoTitle: "Sell Your Property in Ghaziabad | ExitKaro",
-                    metaDesc: "Property sale assistance across Indirapuram, Vaishali, Vasundhara, Raj Nagar Extension, and Crossings Republik.",
-                    h1: "Sell Your Property in Ghaziabad",
                     intro: "From Indirapuram to Raj Nagar Extension, Ghaziabad features vibrant residential townships. If financial pressures make property maintenance tough, our team assists you in exploring structured property sale options.",
                     localities: ["Indirapuram", "Vaishali", "Vasundhara", "Raj Nagar Extension", "Crossings Republik"]
                 },
                 {
                     slug: "delhi-ncr",
                     city: "Delhi NCR",
-                    seoTitle: "Sell Your Property in Delhi NCR | ExitKaro",
-                    metaDesc: "Property selling guidance across South Delhi, Dwarka, Rohini, Gurgaon, and Faridabad.",
-                    h1: "Sell Your Property in Delhi NCR",
                     intro: "Managing residential property obligations across South Delhi, Dwarka, Rohini, or Gurgaon requires clear local market understanding. ExitKaro supports homeowners throughout the Delhi National Capital Region.",
                     localities: ["Dwarka", "Rohini", "South Delhi", "Gurgaon Sector 56", "Sohna Road", "Faridabad"]
                 }
             ]
         };
 
-        // HELPER TO GUARANTEE ARRAY SAFETY (PREVENTS TYPEERROR .map IS NOT A FUNCTION)
+        let isAdminAuthenticated = false;
+
         function getSafeArray(data, fallback) {
             return (Array.isArray(data) && data.length > 0) ? data : fallback;
         }
 
-        // HELPER FOR SAFE DEEP MERGING (PREVENTS CORRUPTED LOCALSTORAGE ERRORS)
         function safeMerge(defaults, storedKey) {
             try {
                 const raw = localStorage.getItem(storedKey);
@@ -354,9 +853,7 @@
                     const merged = JSON.parse(JSON.stringify(defaults));
                     if (parsed && typeof parsed === 'object') {
                         Object.keys(parsed).forEach(k => {
-                            if (parsed[k] !== undefined && parsed[k] !== null) {
-                                merged[k] = parsed[k];
-                            }
+                            if (parsed[k] !== undefined && parsed[k] !== null) merged[k] = parsed[k];
                         });
                     }
                     return merged;
@@ -367,7 +864,6 @@
             }
         }
 
-        // SAFELY INITIALIZE APP STATE WITH FALLBACKS
         const AppState = {
             settings: safeMerge(DefaultState.settings, 'exitkaro_settings'),
             pages: safeMerge(DefaultState.pages, 'exitkaro_pages'),
@@ -377,49 +873,11 @@
             locations: getSafeArray(safeMerge(DefaultState.locations, 'exitkaro_locations'), DefaultState.locations)
         };
 
-        function applyGlobalSettings() {
-            document.querySelectorAll('.global-phone-val').forEach(el => {
-                if (el) el.innerText = (AppState.settings && AppState.settings.phone) || DefaultState.settings.phone;
-            });
-            
-            const currentPhone = (AppState.settings && AppState.settings.phone) || DefaultState.settings.phone;
-            const currentWa = (AppState.settings && AppState.settings.whatsapp) || DefaultState.settings.whatsapp;
-            const phoneClean = currentPhone.replace(/[^0-9]/g, '');
-            const waClean = currentWa.replace(/[^0-9]/g, '');
-
-            const headerPhone = document.getElementById('header-phone-link');
-            if (headerPhone) headerPhone.href = `tel:${phoneClean}`;
-
-            const mobileCall = document.getElementById('mobile-call-btn');
-            if (mobileCall) mobileCall.href = `tel:${phoneClean}`;
-
-            const mobileWa = document.getElementById('mobile-wa-btn');
-            if (mobileWa) mobileWa.href = `https://wa.me/${waClean}`;
-
-            const footerAddr = document.getElementById('footer-address-val');
-            if (footerAddr) footerAddr.innerText = (AppState.settings && AppState.settings.officeAddress) || DefaultState.settings.officeAddress;
-
-            const footerEmail = document.getElementById('footer-email-val');
-            if (footerEmail) footerEmail.innerText = (AppState.settings && AppState.settings.email) || DefaultState.settings.email;
-
-            try {
-                localStorage.setItem('exitkaro_settings', JSON.stringify(AppState.settings));
-                localStorage.setItem('exitkaro_pages', JSON.stringify(AppState.pages));
-                localStorage.setItem('exitkaro_posts', JSON.stringify(AppState.posts));
-                localStorage.setItem('exitkaro_faqs', JSON.stringify(AppState.faqs));
-                localStorage.setItem('exitkaro_locations', JSON.stringify(AppState.locations));
-            } catch(e) {
-                console.warn("LocalStorage save warning", e);
-            }
-        }
-
         function showToast(title, message) {
             const box = document.getElementById('toast-box');
             if (!box) return;
-            const tTitle = document.getElementById('toast-title');
-            const tMsg = document.getElementById('toast-msg');
-            if (tTitle) tTitle.innerText = title;
-            if (tMsg) tMsg.innerText = message;
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-msg').innerText = message;
             box.classList.remove('hidden');
             setTimeout(() => box.classList.add('hidden'), 3500);
         }
@@ -428,967 +886,394 @@
             const menu = document.getElementById('mobile-menu');
             if (menu) menu.classList.toggle('hidden');
         }
-    </script>
 
-    <!-- PAGE RENDER TEMPLATES WITH DEFENSIVE ARRAYS -->
-    <script>
-        const RenderPages = {
-            home: function() {
-                const p = (AppState.pages && AppState.pages.home) || DefaultState.pages.home;
-                const h1Text = p.h1 || DefaultState.pages.home.h1;
-                const heroSubText = p.heroSub || DefaultState.pages.home.heroSub;
-                const heroTaglineText = p.heroTagline || DefaultState.pages.home.heroTagline;
-                const mortHeadText = p.mortgageHead || DefaultState.pages.home.mortgageHead;
-                const mortBodyText = p.mortgageBody || DefaultState.pages.home.mortgageBody;
-                const nophHeadText = p.noPhotoHead || DefaultState.pages.home.noPhotoHead;
-                const nophBodyText = p.noPhotoBody || DefaultState.pages.home.noPhotoBody;
-                const locationsList = getSafeArray(AppState.locations, DefaultState.locations);
+        function applyGlobalSettings() {
+            document.querySelectorAll('.global-phone-val').forEach(el => {
+                if (el) el.innerText = AppState.settings.phone || DefaultState.settings.phone;
+            });
+            const currentPhone = AppState.settings.phone || DefaultState.settings.phone;
+            const currentWa = AppState.settings.whatsapp || DefaultState.settings.whatsapp;
+            const phoneClean = currentPhone.replace(/[^0-9]/g, '');
+            const waClean = currentWa.replace(/[^0-9]/g, '');
 
-                return `
-                    <section class="hero-bg py-12 lg:py-20 border-b border-slate-200">
-                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                                
-                                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-300 text-emerald-900 text-xs font-bold">
-                                        <i class="fa-solid fa-shield-halved text-emerald-700"></i>
-                                        DELHI NCR PROPERTY SALE ASSISTANCE
-                                    </span>
+            if (document.getElementById('header-phone-link')) document.getElementById('header-phone-link').href = `tel:${phoneClean}`;
+            if (document.getElementById('mobile-call-btn')) document.getElementById('mobile-call-btn').href = `tel:${phoneClean}`;
+            if (document.getElementById('mobile-wa-btn')) document.getElementById('mobile-wa-btn').href = `https://wa.me/${waClean}`;
 
-                                    <h1 class="text-3xl sm:text-5xl font-black text-slate-900 leading-tight tracking-tight">
-                                        ${h1Text}
-                                    </h1>
+            try {
+                localStorage.setItem('exitkaro_settings', JSON.stringify(AppState.settings));
+                localStorage.setItem('exitkaro_pages', JSON.stringify(AppState.pages));
+                localStorage.setItem('exitkaro_posts', JSON.stringify(AppState.posts));
+                localStorage.setItem('exitkaro_faqs', JSON.stringify(AppState.faqs));
+                localStorage.setItem('exitkaro_locations', JSON.stringify(AppState.locations));
+            } catch(e) {}
+        }
 
-                                    <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
-                                        ${heroSubText}
-                                    </p>
+        /* NAVIGATION ENGINE */
+        function navigateTo(targetPageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
 
-                                    <p class="text-xs text-slate-500 font-semibold italic">
-                                        ${heroTaglineText}
-                                    </p>
+            // Remove active class from header nav links
+            document.querySelectorAll('header nav a').forEach(a => a.classList.remove('active-nav-link'));
 
-                                    <div class="flex flex-wrap gap-3 justify-center lg:justify-start pt-2">
-                                        <button onclick="router.navigate('/sell-property')" class="px-6 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-sm shadow-xl shadow-emerald-700/20 transition-all flex items-center gap-2">
-                                            Get a Free Property Evaluation
-                                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                                        </button>
-                                        <a href="tel:${((AppState.settings && AppState.settings.phone) || DefaultState.settings.phone).replace(/[^0-9]/g, '')}" class="px-6 py-3.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-900 font-bold text-sm shadow-sm transition-all flex items-center gap-2">
-                                            <i class="fa-solid fa-headset text-emerald-700"></i>
-                                            Talk to Our Team
-                                        </a>
-                                    </div>
-                                </div>
+            let pageEl = document.getElementById(`page-${targetPageId}`);
+            if (!pageEl) {
+                targetPageId = 'home';
+                pageEl = document.getElementById('page-home');
+            }
 
-                                <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-2xl relative">
-                                    <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
-                                        <div>
-                                            <span class="text-[10px] uppercase font-extrabold text-emerald-700 tracking-wider">Confidential Form</span>
-                                            <h3 class="text-lg font-black text-slate-900">Tell Us About Your Property</h3>
-                                        </div>
-                                        <span id="hero-step-num" class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center text-sm font-bold">1/2</span>
-                                    </div>
+            pageEl.classList.remove('hidden');
 
-                                    <form onsubmit="FormHandlers.submitHeroLead(event)" class="space-y-4">
-                                        <div id="hero-step-1" class="space-y-3.5">
-                                            <div>
-                                                <label class="block text-xs font-bold text-slate-700 mb-1">Full Name *</label>
-                                                <input type="text" id="h-name" required placeholder="Enter your full name" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 outline-none focus:bg-white focus:border-emerald-600">
-                                            </div>
-                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                                <div>
-                                                    <label class="block text-xs font-bold text-slate-700 mb-1">Mobile Number *</label>
-                                                    <input type="tel" id="h-phone" required placeholder="10-digit mobile" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 outline-none focus:bg-white focus:border-emerald-600">
-                                                </div>
-                                                <div>
-                                                    <label class="block text-xs font-bold text-slate-700 mb-1">City *</label>
-                                                    <select id="h-city" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 outline-none">
-                                                        <option value="Noida">Noida</option>
-                                                        <option value="Ghaziabad">Ghaziabad</option>
-                                                        <option value="Delhi NCR">Delhi NCR</option>
-                                                        <option value="Gurgaon">Gurgaon</option>
-                                                        <option value="Faridabad">Faridabad</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                                <div>
-                                                    <label class="block text-xs font-bold text-slate-700 mb-1">Locality / Sector *</label>
-                                                    <input type="text" id="h-locality" required placeholder="e.g. Sector 137 / Indirapuram" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 outline-none focus:bg-white focus:border-emerald-600">
-                                                </div>
-                                                <div>
-                                                    <label class="block text-xs font-bold text-slate-700 mb-1">Property Type *</label>
-                                                    <select id="h-type" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 outline-none">
-                                                        <option value="Flat / Apartment">Flat / Apartment</option>
-                                                        <option value="Builder Floor">Builder Floor</option>
-                                                        <option value="House / Villa">House / Villa</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+            // Highlight nav
+            const activeNav = document.getElementById(`nav-${targetPageId}`);
+            if (activeNav) activeNav.classList.add('active-nav-link');
 
-                                            <button type="button" onclick="FormHandlers.nextStepHero()" class="w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-xs shadow-lg shadow-emerald-700/20 flex items-center justify-center gap-2">
-                                                Next: Loan & Property Details <i class="fa-solid fa-arrow-right"></i>
-                                            </button>
-                                        </div>
+            // Update URL hash safely without triggering infinite loops
+            window.location.hash = targetPageId === 'home' ? '/' : `/${targetPageId}`;
 
-                                        <div id="hero-step-2" class="space-y-3.5 hidden">
-                                            <div class="grid grid-cols-2 gap-3">
-                                                <div>
-                                                    <label class="block text-xs font-bold text-slate-700 mb-1">BHK Configuration</label>
-                                                    <select id="h-bhk" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none">
-                                                        <option value="1 BHK">1 BHK</option>
-                                                        <option value="2 BHK" selected>2 BHK</option>
-                                                        <option value="3 BHK">3 BHK</option>
-                                                        <option value="4+ BHK">4+ BHK</option>
-                                                    </select>
-                                                </div>
-                                                <div>
-                                                    <label class="block text-xs font-bold text-slate-700 mb-1">Approx Value <span class="text-[10px] text-slate-400 font-normal">(Optional)</span></label>
-                                                    <input type="number" id="h-val" placeholder="e.g. 7500000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none">
-                                                </div>
-                                            </div>
+            // Reset scroll position to top
+            window.scrollTo({ top: 0, behavior: 'instant' });
 
-                                            <div class="grid grid-cols-2 gap-3">
-                                                <div>
-                                                    <label class="block text-xs font-bold text-slate-700 mb-1">Loan Outstanding <span class="text-[10px] text-slate-400 font-normal">(Optional)</span></label>
-                                                    <input type="number" id="h-loan" placeholder="e.g. 5000000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none">
-                                                </div>
-                                                <div>
-                                                    <label class="block text-xs font-bold text-slate-700 mb-1">Monthly EMI <span class="text-[10px] text-slate-400 font-normal">(Optional)</span></label>
-                                                    <input type="number" id="h-emi" placeholder="e.g. 45000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none">
-                                                </div>
-                                            </div>
+            // Handle Admin Login Check
+            if (targetPageId === 'admin') {
+                if (isAdminAuthenticated) {
+                    document.getElementById('admin-login-box').classList.add('hidden');
+                    document.getElementById('admin-panel-box').classList.remove('hidden');
+                    renderAdminCRM();
+                    loadPageContent();
+                    loadSeoMeta();
+                } else {
+                    document.getElementById('admin-panel-box').classList.add('hidden');
+                    document.getElementById('admin-login-box').classList.remove('hidden');
+                }
+            }
 
-                                            <div class="grid grid-cols-2 gap-3">
-                                                <div>
-                                                    <label class="block text-xs font-bold text-slate-700 mb-1">Lending Bank <span class="text-[10px] text-slate-400 font-normal">(Optional)</span></label>
-                                                    <input type="text" id="h-bank" placeholder="e.g. HDFC / SBI" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none">
-                                                </div>
-                                                <div>
-                                                    <label class="block text-xs font-bold text-slate-700 mb-1">When should we call? *</label>
-                                                    <select id="h-time" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none">
-                                                        <option value="Anytime">Anytime</option>
-                                                        <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
-                                                        <option value="Evening (4 PM - 8 PM)">Evening (4 PM - 8 PM)</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+            // Render Dynamic Components
+            if (targetPageId === 'home') renderHomeAreas();
+            if (targetPageId === 'areas') renderAreasDirectory();
+            if (targetPageId === 'faqs') renderFaqsPage();
+            if (targetPageId === 'blog') renderBlogListPage();
+        }
 
-                                            <div class="pt-1 flex items-start gap-2">
-                                                <input type="checkbox" id="h-consent" required checked class="mt-0.5 rounded border-slate-300 text-emerald-700">
-                                                <label for="h-consent" class="text-[11px] text-slate-600 leading-tight">
-                                                    By submitting, you agree to be contacted by ExitKaro regarding your property enquiry. Read our <a href="javascript:void(0)" onclick="router.navigate('/privacy-policy')" class="text-emerald-700 underline font-bold">Privacy Policy</a>.
-                                                </label>
-                                            </div>
+        /* ADMIN AUTHENTICATION */
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('admin-user-input').value;
+            const p = document.getElementById('admin-pass-input').value;
 
-                                            <div class="flex gap-2">
-                                                <button type="button" onclick="FormHandlers.prevStepHero()" class="w-1/3 py-3 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs">Back</button>
-                                                <button type="submit" class="w-2/3 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-xs shadow-lg">Submit Property Enquiry</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+            if (u === 'admin' && p === 'admin123') {
+                isAdminAuthenticated = true;
+                showToast("Access Granted", "Logged into Super Admin Control Suite.");
+                navigateTo('admin');
+            } else {
+                showToast("Access Denied", "Invalid ID or Password. Try ID: admin, Pass: admin123");
+            }
+        }
 
-                    <!-- TRUST STRIP -->
-                    <section class="py-10 bg-white border-b border-slate-200">
-                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-map-location-dot"></i></div>
-                                    <div><h4 class="font-extrabold text-slate-900 text-sm">Delhi NCR Focused</h4><p class="text-xs text-slate-600 mt-0.5">Specialized local assistance across Noida, Ghaziabad and NCR markets.</p></div>
-                                </div>
-                                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-user-shield"></i></div>
-                                    <div><h4 class="font-extrabold text-slate-900 text-sm">Confidential Enquiries</h4><p class="text-xs text-slate-600 mt-0.5">Your personal and financial details remain private and secure.</p></div>
-                                </div>
-                                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-clipboard-check"></i></div>
-                                    <div><h4 class="font-extrabold text-slate-900 text-sm">Property Evaluation</h4><p class="text-xs text-slate-600 mt-0.5">Physical property assessment to understand your options practically.</p></div>
-                                </div>
-                                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-handshake"></i></div>
-                                    <div><h4 class="font-extrabold text-slate-900 text-sm">Personal Assistance</h4><p class="text-xs text-slate-600 mt-0.5">Direct team support from enquiry submission through next steps.</p></div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+        function handleAdminLogout() {
+            isAdminAuthenticated = false;
+            showToast("Logged Out", "You have been logged out of Admin Panel.");
+            navigateTo('home');
+        }
 
-                    <!-- MORTGAGE GUIDANCE SECTION -->
-                    <section class="py-16 bg-slate-50 border-b border-slate-200">
-                        <div class="max-w-5xl mx-auto px-4 space-y-6">
-                            <div class="text-center space-y-2">
-                                <span class="text-xs font-bold text-emerald-700 uppercase tracking-widest">Mortgage Guidance</span>
-                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">${mortHeadText}</h2>
-                            </div>
+        /* FORM HANDLERS */
+        function nextStepHero() {
+            if (!document.getElementById('h-name').value || !document.getElementById('h-phone').value || !document.getElementById('h-locality').value) {
+                showToast("Form Incomplete", "Please fill in Name, Phone, and Locality.");
+                return;
+            }
+            document.getElementById('hero-step-1').classList.add('hidden');
+            document.getElementById('hero-step-2').classList.remove('hidden');
+            document.getElementById('hero-step-num').innerText = "2/2";
+        }
 
-                            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
-                                <p>${mortBodyText}</p>
-                                <div class="pt-4 text-center">
-                                    <button onclick="router.navigate('/sell-property')" class="px-6 py-3 rounded-xl bg-emerald-700 text-white font-extrabold text-xs shadow-md">Discuss My Property Situation</button>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+        function prevStepHero() {
+            document.getElementById('hero-step-2').classList.add('hidden');
+            document.getElementById('hero-step-1').classList.remove('hidden');
+            document.getElementById('hero-step-num').innerText = "1/2";
+        }
 
-                    <!-- NO PHOTO SECTION -->
-                    <section class="py-16 bg-navy-900 text-white border-b border-slate-800">
-                        <div class="max-w-7xl mx-auto px-4">
-                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                                <div class="lg:col-span-6 space-y-4">
-                                    <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest">Confidential Approach</span>
-                                    <h2 class="text-2xl sm:text-4xl font-black">${nophHeadText}</h2>
-                                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">${nophBodyText}</p>
-                                    <button onclick="router.navigate('/sell-property')" class="px-6 py-3.5 rounded-xl bg-emerald-600 text-white font-extrabold text-xs">Start Confidential Enquiry</button>
-                                </div>
+        function submitHeroLead(e) {
+            e.preventDefault();
+            const leadData = {
+                id: "EK-" + Math.floor(1000 + Math.random() * 9000),
+                date: new Date().toISOString().slice(0, 10),
+                name: document.getElementById('h-name').value,
+                phone: document.getElementById('h-phone').value,
+                city: document.getElementById('h-city').value,
+                locality: document.getElementById('h-locality').value,
+                propertyType: document.getElementById('h-type').value,
+                bhk: document.getElementById('h-bhk').value,
+                estimatedValue: document.getElementById('h-val').value || 'N/A',
+                outstandingLoan: document.getElementById('h-loan').value || 'N/A',
+                monthlyEmi: document.getElementById('h-emi').value || 'N/A',
+                bank: document.getElementById('h-bank').value || 'N/A',
+                preferredCallbackTime: document.getElementById('h-time').value,
+                status: "New"
+            };
 
-                                <div class="lg:col-span-6 bg-navy-950 p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-3 text-xs">
-                                    <h4 class="font-bold text-amber-400 uppercase tracking-wider text-xs mb-2">What Happens After You Submit Details?</h4>
-                                    <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3"><span class="font-bold text-emerald-400">1.</span> You provide basic property location & contact details.</div>
-                                    <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3"><span class="font-bold text-emerald-400">2.</span> Our team contacts you confidentially.</div>
-                                    <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3"><span class="font-bold text-emerald-400">3.</span> We understand property type, timeline, and expectations.</div>
-                                    <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3"><span class="font-bold text-emerald-400">4.</span> If required, our team coordinates an on-ground site visit.</div>
-                                    <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3"><span class="font-bold text-emerald-400">5.</span> Property information and documents are reviewed.</div>
-                                    <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3"><span class="font-bold text-emerald-400">6.</span> Our team discusses the possible way forward.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+            AppState.leads.unshift(leadData);
+            localStorage.setItem('exitkaro_leads', JSON.stringify(AppState.leads));
+            showToast("Enquiry Received", "Thank you! Our team will call you confidentially.");
 
-                    <!-- AREAS SECTION -->
-                    <section class="py-16 bg-white border-b border-slate-200">
-                        <div class="max-w-7xl mx-auto px-4">
-                            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
-                                <div>
-                                    <span class="text-xs font-bold text-emerald-700 uppercase tracking-widest">Regional Coverage</span>
-                                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Property Sale Assistance Across Delhi NCR</h2>
-                                </div>
-                                <button onclick="router.navigate('/areas')" class="text-xs font-bold text-emerald-700 hover:underline">View All Regional Hubs →</button>
-                            </div>
+            document.getElementById('h-name').value = '';
+            document.getElementById('h-phone').value = '';
+            document.getElementById('h-locality').value = '';
+            prevStepHero();
+        }
 
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                ${locationsList.map(loc => `
-                                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
-                                        <h3 class="text-xl font-black text-slate-900">${loc.city || 'City'}</h3>
-                                        <p class="text-xs text-slate-600">${loc.intro || ''}</p>
-                                        <button onclick="router.navigate('/areas/${loc.slug || 'noida'}')" class="w-full py-2.5 rounded-xl bg-white border border-slate-300 font-extrabold text-xs text-slate-800">
-                                            View ${loc.city || 'City'} Assistance Page
-                                        </button>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    </section>
-                `;
-            },
+        function submitDedicatedSellForm(e) {
+            e.preventDefault();
+            const leadData = {
+                id: "EK-" + Math.floor(1000 + Math.random() * 9000),
+                date: new Date().toISOString().slice(0, 10),
+                name: document.getElementById('sp-name').value,
+                phone: document.getElementById('sp-phone').value,
+                city: document.getElementById('sp-city').value,
+                locality: document.getElementById('sp-locality').value,
+                propertyType: "Flat / Apartment",
+                bhk: "2 BHK",
+                status: "New"
+            };
 
-            sellProperty: function() {
-                const p = (AppState.pages && AppState.pages.sellProperty) || DefaultState.pages.sellProperty;
-                return `
-                    <section class="py-12 bg-slate-50">
-                        <div class="max-w-3xl mx-auto px-4">
-                            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl space-y-6">
-                                <h1 class="text-2xl font-black text-slate-900">${p.h1}</h1>
-                                <p class="text-xs text-slate-600 leading-relaxed">${p.intro}</p>
-                                <form onsubmit="FormHandlers.submitDedicatedSellForm(event)" class="space-y-4 text-xs">
-                                    <div class="grid grid-cols-2 gap-3">
-                                        <input type="text" id="sp-name" required placeholder="Full Name *" class="bg-slate-50 border p-2.5 rounded-xl">
-                                        <input type="tel" id="sp-phone" required placeholder="Mobile Number *" class="bg-slate-50 border p-2.5 rounded-xl">
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-3">
-                                        <select id="sp-city" class="bg-slate-50 border p-2.5 rounded-xl">
-                                            <option value="Noida">Noida</option>
-                                            <option value="Ghaziabad">Ghaziabad</option>
-                                            <option value="Delhi NCR">Delhi NCR</option>
-                                        </select>
-                                        <input type="text" id="sp-locality" required placeholder="Locality / Sector *" class="bg-slate-50 border p-2.5 rounded-xl">
-                                    </div>
-                                    <button type="submit" class="w-full py-3.5 bg-emerald-700 text-white font-extrabold rounded-xl shadow">Submit Property Enquiry</button>
-                                </form>
-                            </div>
-                        </div>
-                    </section>
-                `;
-            },
+            AppState.leads.unshift(leadData);
+            localStorage.setItem('exitkaro_leads', JSON.stringify(AppState.leads));
+            showToast("Evaluation Requested", "We have received your enquiry.");
+            e.target.reset();
+        }
 
-            howItWorks: function() {
-                const p = (AppState.pages && AppState.pages.howItWorks) || DefaultState.pages.howItWorks;
-                return `
-                    <section class="py-12 bg-white">
-                        <div class="max-w-3xl mx-auto px-4 space-y-6">
-                            <h1 class="text-2xl font-black text-slate-900">${p.h1}</h1>
-                            <p class="text-xs text-slate-600 leading-relaxed">${p.intro}</p>
-                            <div class="space-y-3 text-xs">
-                                <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 1:</strong> Share your basic property details confidentially.</div>
-                                <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 2:</strong> Our team calls to understand your loan status & expectations.</div>
-                                <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 3:</strong> On-ground site evaluation by local team if applicable.</div>
-                                <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 4:</strong> Review property market position & legal documents.</div>
-                                <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 5:</strong> Discuss structured property sale options.</div>
-                            </div>
-                        </div>
-                    </section>
-                `;
-            },
+        /* DYNAMIC RENDERING FUNCTIONS */
+        function renderHomeAreas() {
+            const container = document.getElementById('home-areas-grid');
+            if (!container) return;
+            container.innerHTML = AppState.locations.map(loc => `
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-3">
+                    <h3 class="text-xl font-black text-slate-900">${loc.city}</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">${loc.intro}</p>
+                    <button onclick="navigateTo('areas')" class="w-full py-2.5 rounded-xl bg-white border border-slate-300 font-extrabold text-xs text-slate-800 hover:bg-emerald-700 hover:text-white transition-all">View ${loc.city} Page</button>
+                </div>
+            `).join('');
+        }
 
-            whyExitkaro: function() {
-                const p = (AppState.pages && AppState.pages.whyExitkaro) || DefaultState.pages.whyExitkaro;
-                return `
-                    <section class="py-12 bg-white">
-                        <div class="max-w-3xl mx-auto px-4 space-y-6">
-                            <h1 class="text-2xl font-black text-slate-900">${p.h1}</h1>
-                            <p class="text-xs text-slate-600 leading-relaxed">${p.intro}</p>
-                        </div>
-                    </section>
-                `;
-            },
-
-            faqs: function() {
-                const p = (AppState.pages && AppState.pages.faqs) || DefaultState.pages.faqs;
-                const faqsList = getSafeArray(AppState.faqs, DefaultState.faqs);
-                return `
-                    <section class="py-12 bg-white">
-                        <div class="max-w-4xl mx-auto px-4 space-y-6">
-                            <h1 class="text-2xl font-black text-slate-900">${p.h1}</h1>
-                            <p class="text-xs text-slate-600 leading-relaxed">${p.intro}</p>
-                            <div class="space-y-4">
-                                ${faqsList.map(f => `
-                                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-1">
-                                        <h4 class="font-bold text-slate-900 text-xs">${f.q}</h4>
-                                        <p class="text-xs text-slate-600 leading-relaxed">${f.a}</p>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    </section>
-                `;
-            },
-
-            areasDirectory: function() {
-                const locationsList = getSafeArray(AppState.locations, DefaultState.locations);
-                return `
-                    <section class="py-12 bg-white">
-                        <div class="max-w-4xl mx-auto px-4 space-y-6">
-                            <h1 class="text-2xl font-black">Delhi NCR Regional Service Hubs</h1>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                ${locationsList.map(loc => `
-                                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
-                                        <h3 class="font-bold text-slate-900 text-sm">${loc.city}</h3>
-                                        <p class="text-xs text-slate-600">${loc.intro}</p>
-                                        <button onclick="router.navigate('/areas/${loc.slug}')" class="text-xs text-emerald-700 font-bold hover:underline">View Page →</button>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    </section>
-                `;
-            },
-
-            locationDetail: function(slug) {
-                const locs = getSafeArray(AppState.locations, DefaultState.locations);
-                const loc = locs.find(l => l.slug === slug) || locs[0];
-                return `
-                    <section class="py-12 bg-slate-50">
-                        <div class="max-w-4xl mx-auto px-4 bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-                            <h1 class="text-2xl font-black text-slate-900">${loc.h1 || 'Property Sale Assistance'}</h1>
-                            <p class="text-xs text-slate-600 leading-relaxed">${loc.intro || ''}</p>
-                            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
-                                <h4 class="font-bold text-xs text-slate-900 mb-2">Key Localities Covered:</h4>
-                                <div class="flex flex-wrap gap-2 text-xs">
-                                    ${(loc.localities || []).map(l => `<span class="px-2.5 py-1 bg-white border rounded font-semibold">${l}</span>`).join('')}
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                `;
-            },
-
-            blogList: function() {
-                const posts = getSafeArray(AppState.posts, DefaultState.posts);
-                return `
-                    <section class="py-12 bg-slate-50">
-                        <div class="max-w-4xl mx-auto px-4 space-y-6">
-                            <h1 class="text-2xl font-black">ExitKaro Knowledge Hub</h1>
-                            ${posts.map(post => `
-                                <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-2">
-                                    <span class="text-[10px] bg-emerald-50 text-emerald-800 font-bold px-2 py-0.5 rounded">${post.category}</span>
-                                    <h2 class="text-lg font-bold text-slate-900">${post.title}</h2>
-                                    <p class="text-xs text-slate-600">${post.excerpt}</p>
-                                    <button onclick="router.navigate('/blog/${post.slug}')" class="text-xs text-emerald-700 font-bold">Read Article →</button>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </section>
-                `;
-            },
-
-            blogDetail: function(slug) {
-                const posts = getSafeArray(AppState.posts, DefaultState.posts);
-                const post = posts.find(p => p.slug === slug) || posts[0];
-                return `
-                    <section class="py-12 bg-white">
-                        <div class="max-w-3xl mx-auto px-4 space-y-4">
-                            <span class="text-xs font-bold text-emerald-700 uppercase tracking-widest">${post.category}</span>
-                            <h1 class="text-2xl sm:text-3xl font-black text-slate-900">${post.title}</h1>
-                            <p class="text-xs text-slate-500">By <strong>${post.author}</strong> — ${post.authorBio}</p>
-                            <div class="prose text-xs sm:text-sm text-slate-700 leading-relaxed space-y-3 pt-4 border-t border-slate-100">${post.content}</div>
-                        </div>
-                    </section>
-                `;
-            },
-
-            privacy: function() {
-                return `<section class="py-12 bg-white"><div class="max-w-3xl mx-auto px-4"><h1 class="text-2xl font-bold">Privacy Policy</h1><p class="text-xs text-slate-600 mt-2">Your information is kept private and confidential...</p></div></section>`;
-            },
-
-            adminDashboard: function() {
-                const leads = getSafeArray(AppState.leads, DefaultState.leads);
-                return `
-                    <div class="bg-slate-900 text-slate-100 min-h-screen py-8 px-4 sm:px-6 lg:px-8 font-sans">
-                        <div class="max-w-7xl mx-auto space-y-6">
-                            
-                            <div class="bg-slate-950 border border-slate-800 rounded-3xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                                <div>
-                                    <span class="px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[10px] font-extrabold uppercase">Full Content Management System</span>
-                                    <h1 class="text-2xl font-black text-white mt-1">ExitKaro Control Suite</h1>
-                                </div>
-                                <button onclick="AdminEngine.exportCSV()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow">
-                                    <i class="fa-solid fa-file-excel mr-1"></i> Export Leads CSV
-                                </button>
-                            </div>
-
-                            <!-- CMS Navigation Tabs -->
-                            <div class="flex gap-2 border-b border-slate-800 pb-2 text-xs font-bold overflow-x-auto">
-                                <button onclick="AdminEngine.switchTab('crm')" id="atab-crm" class="px-4 py-2 rounded-xl bg-emerald-700 text-white font-extrabold">
-                                    <i class="fa-solid fa-users mr-1"></i> Leads CRM (${leads.length})
-                                </button>
-                                <button onclick="AdminEngine.switchTab('content')" id="atab-content" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300">
-                                    <i class="fa-solid fa-pen-to-square mr-1"></i> Edit All Page Text
-                                </button>
-                                <button onclick="AdminEngine.switchTab('seo')" id="atab-seo" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300">
-                                    <i class="fa-solid fa-magnifying-glass mr-1"></i> SEO Meta & Titles
-                                </button>
-                                <button onclick="AdminEngine.switchTab('blogs')" id="atab-blogs" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300">
-                                    <i class="fa-solid fa-newspaper mr-1"></i> Blogs Manager
-                                </button>
-                                <button onclick="AdminEngine.switchTab('faqs')" id="atab-faqs" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300">
-                                    <i class="fa-solid fa-circle-question mr-1"></i> FAQs Manager
-                                </button>
-                                <button onclick="AdminEngine.switchTab('settings')" id="atab-settings" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300">
-                                    <i class="fa-solid fa-gear mr-1"></i> Global Phone/Contacts
-                                </button>
-                            </div>
-
-                            <!-- TAB 1: LEADS CRM -->
-                            <div id="apanel-crm" class="space-y-4">
-                                <div class="overflow-x-auto bg-slate-950 rounded-2xl border border-slate-800">
-                                    <table class="w-full text-left text-xs text-slate-300 border-collapse">
-                                        <thead>
-                                            <tr class="bg-slate-900 text-slate-400 border-b border-slate-800">
-                                                <th class="p-3">ID & Date</th>
-                                                <th class="p-3">Customer Name</th>
-                                                <th class="p-3">Contact</th>
-                                                <th class="p-3">Location</th>
-                                                <th class="p-3">Property & Loan Info</th>
-                                                <th class="p-3">Status</th>
-                                                <th class="p-3 text-right">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="admin-crm-tbody"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-                            <!-- TAB 2: FULL CONTENT CMS -->
-                            <div id="apanel-content" class="hidden space-y-4 bg-slate-950 p-6 rounded-2xl border border-slate-800 text-xs">
-                                <h3 class="font-extrabold text-white text-sm">Select Page to Edit Copy</h3>
-                                <select id="acms-select-page" onchange="AdminEngine.loadPageContent()" class="w-full sm:w-64 bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 outline-none">
-                                    <option value="home">Homepage (`/`)</option>
-                                    <option value="sellProperty">Sell Property (`/sell-property`)</option>
-                                    <option value="howItWorks">How It Works (`/how-it-works`)</option>
-                                    <option value="whyExitkaro">Why ExitKaro (`/why-exitkaro`)</option>
-                                    <option value="faqs">FAQs Page (`/faqs`)</option>
-                                </select>
-
-                                <div class="space-y-3 pt-2">
-                                    <div>
-                                        <label class="block text-slate-400 mb-1">Page Main H1 Heading</label>
-                                        <input type="text" id="acms-h1" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none">
-                                    </div>
-                                    <div>
-                                        <label class="block text-slate-400 mb-1">Hero Subtitle / Intro Paragraph</label>
-                                        <textarea id="acms-intro" rows="3" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none"></textarea>
-                                    </div>
-                                    <div>
-                                        <label class="block text-slate-400 mb-1">Mortgage Guidance Section Title</label>
-                                        <input type="text" id="acms-mortgage-head" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none">
-                                    </div>
-                                    <div>
-                                        <label class="block text-slate-400 mb-1">Mortgage Guidance Body Text</label>
-                                        <textarea id="acms-mortgage-body" rows="3" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none"></textarea>
-                                    </div>
-                                    <div>
-                                        <label class="block text-slate-400 mb-1">No-Photo Confidential Section Title</label>
-                                        <input type="text" id="acms-nophoto-head" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none">
-                                    </div>
-                                    <div>
-                                        <label class="block text-slate-400 mb-1">No-Photo Confidential Body Text</label>
-                                        <textarea id="acms-nophoto-body" rows="3" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none"></textarea>
-                                    </div>
-                                    <button onclick="AdminEngine.savePageContent()" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold">Publish Page Copy Live</button>
-                                </div>
-                            </div>
-
-                            <!-- TAB 3: SEO META CMS -->
-                            <div id="apanel-seo" class="hidden space-y-4 bg-slate-950 p-6 rounded-2xl border border-slate-800 text-xs">
-                                <h3 class="font-extrabold text-white text-sm">On-Page SEO Meta Tag Controls</h3>
-                                <select id="aseo-select-page" onchange="AdminEngine.loadSeoMeta()" class="w-full sm:w-64 bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 outline-none">
-                                    <option value="home">Homepage SEO</option>
-                                    <option value="sellProperty">Sell Property SEO</option>
-                                    <option value="howItWorks">How It Works SEO</option>
-                                    <option value="whyExitkaro">Why ExitKaro SEO</option>
-                                    <option value="faqs">FAQs SEO</option>
-                                </select>
-
-                                <div class="space-y-3 pt-2">
-                                    <div>
-                                        <label class="block text-slate-400 mb-1">Page SEO Title (`&lt;title&gt;` Tag)</label>
-                                        <input type="text" id="aseo-title" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none">
-                                    </div>
-                                    <div>
-                                        <label class="block text-slate-400 mb-1">Meta Description (`&lt;meta name="description"&gt;`)</label>
-                                        <textarea id="aseo-desc" rows="3" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white outline-none"></textarea>
-                                    </div>
-                                    <button onclick="AdminEngine.saveSeoMeta()" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold">Save SEO Meta Live</button>
-                                </div>
-                            </div>
-
-                            <!-- TAB 4: BLOGS MANAGER -->
-                            <div id="apanel-blogs" class="hidden space-y-4 bg-slate-950 p-6 rounded-2xl border border-slate-800 text-xs">
-                                <h3 class="font-extrabold text-white text-sm">Add New Blog Article</h3>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <input type="text" id="ablog-title" placeholder="Blog Title" class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white">
-                                    <input type="text" id="ablog-slug" placeholder="URL Slug (e.g. can-you-sell-property)" class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white">
-                                </div>
-                                <textarea id="ablog-excerpt" placeholder="Short Excerpt" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white"></textarea>
-                                <textarea id="ablog-content" rows="6" placeholder="Full Article Body (Supports &lt;h2&gt;, &lt;p&gt; HTML)" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white"></textarea>
-                                <button onclick="AdminEngine.addBlog()" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold">Publish Blog Post</button>
-                            </div>
-
-                            <!-- TAB 5: FAQS MANAGER -->
-                            <div id="apanel-faqs" class="hidden space-y-4 bg-slate-950 p-6 rounded-2xl border border-slate-800 text-xs">
-                                <h3 class="font-extrabold text-white text-sm">Add New FAQ Item</h3>
-                                <input type="text" id="afaq-q" placeholder="Question" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white">
-                                <textarea id="afaq-a" rows="3" placeholder="Answer" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white"></textarea>
-                                <button onclick="AdminEngine.addFAQ()" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold">Add FAQ Live</button>
-                            </div>
-
-                            <!-- TAB 6: GLOBAL SETTINGS -->
-                            <div id="apanel-settings" class="hidden space-y-4 bg-slate-950 p-6 rounded-2xl border border-slate-800 max-w-xl text-xs">
-                                <h3 class="font-extrabold text-white text-sm">Global Site Contacts</h3>
-                                <div>
-                                    <label class="block text-slate-400 mb-1">Phone Number</label>
-                                    <input type="text" id="set-phone" value="${AppState.settings.phone || ''}" class="w-full bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 outline-none">
-                                </div>
-                                <div>
-                                    <label class="block text-slate-400 mb-1">WhatsApp Number</label>
-                                    <input type="text" id="set-wa" value="${AppState.settings.whatsapp || ''}" class="w-full bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 outline-none">
-                                </div>
-                                <div>
-                                    <label class="block text-slate-400 mb-1">Support Email</label>
-                                    <input type="email" id="set-email" value="${AppState.settings.email || ''}" class="w-full bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 outline-none">
-                                </div>
-                                <div>
-                                    <label class="block text-slate-400 mb-1">Office Address</label>
-                                    <input type="text" id="set-addr" value="${AppState.settings.officeAddress || ''}" class="w-full bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 outline-none">
-                                </div>
-                                <button onclick="AdminEngine.saveSettings()" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold">Save Contact Info Live Across Entire Site</button>
-                            </div>
-
-                        </div>
+        function renderAreasDirectory() {
+            const container = document.getElementById('areas-directory-grid');
+            if (!container) return;
+            container.innerHTML = AppState.locations.map(loc => `
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                    <h3 class="font-bold text-slate-900 text-sm">${loc.city}</h3>
+                    <p class="text-xs text-slate-600">${loc.intro}</p>
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                        ${(loc.localities || []).map(l => `<span class="px-2 py-0.5 bg-white text-[10px] font-semibold rounded border">${l}</span>`).join('')}
                     </div>
-                `;
+                </div>
+            `).join('');
+        }
+
+        function renderFaqsPage() {
+            const container = document.getElementById('faqs-list-container');
+            if (!container) return;
+            container.innerHTML = AppState.faqs.map(f => `
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-1">
+                    <h4 class="font-bold text-slate-900 text-xs">${f.q}</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">${f.a}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderBlogListPage() {
+            const container = document.getElementById('blog-posts-container');
+            if (!container) return;
+            container.innerHTML = AppState.posts.map(post => `
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-2">
+                    <span class="text-[10px] bg-emerald-50 text-emerald-800 font-bold px-2 py-0.5 rounded border border-emerald-200">${post.category}</span>
+                    <h2 class="text-lg font-bold text-slate-900">${post.title}</h2>
+                    <p class="text-xs text-slate-600">${post.excerpt}</p>
+                    <button onclick="openBlogDetail('${post.slug}')" class="text-xs text-emerald-700 font-bold hover:underline">Read Full Article →</button>
+                </div>
+            `).join('');
+        }
+
+        function openBlogDetail(slug) {
+            const post = AppState.posts.find(p => p.slug === slug) || AppState.posts[0];
+            document.getElementById('bd-cat').innerText = post.category;
+            document.getElementById('bd-title').innerText = post.title;
+            document.getElementById('bd-author').innerText = `By ${post.author} — ${post.authorBio}`;
+            document.getElementById('bd-content').innerHTML = post.content;
+            navigateTo('blog-detail');
+        }
+
+        /* ADMIN FUNCTIONS */
+        function switchAdminTab(tabName) {
+            ['crm', 'content', 'seo', 'blogs', 'faqs', 'settings'].forEach(t => {
+                document.getElementById(`apanel-${t}`).classList.add('hidden');
+                document.getElementById(`atab-${t}`).className = "px-4 py-2 rounded-xl bg-slate-800 text-slate-300";
+            });
+
+            document.getElementById(`apanel-${tabName}`).classList.remove('hidden');
+            document.getElementById(`atab-${tabName}`).className = "px-4 py-2 rounded-xl bg-emerald-700 text-white font-extrabold";
+
+            if (tabName === 'content') loadPageContent();
+            if (tabName === 'seo') loadSeoMeta();
+        }
+
+        function renderAdminCRM() {
+            const tbody = document.getElementById('admin-crm-tbody');
+            if (!tbody) return;
+            document.getElementById('admin-lead-count').innerText = AppState.leads.length;
+
+            tbody.innerHTML = AppState.leads.map(l => `
+                <tr class="border-b border-slate-800 hover:bg-slate-900/50">
+                    <td class="p-3 font-mono text-emerald-400 font-bold">${l.id}<br><span class="text-[10px] text-slate-500">${l.date}</span></td>
+                    <td class="p-3 font-bold text-white">${l.name}</td>
+                    <td class="p-3 text-amber-400 font-mono">${l.phone}</td>
+                    <td class="p-3 text-slate-300">${l.city} (${l.locality})</td>
+                    <td class="p-3 text-[11px] text-slate-400">${l.propertyType} | Loan: ₹${l.outstandingLoan || 'N/A'}</td>
+                    <td class="p-3">
+                        <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold text-[10px]">${l.status}</span>
+                    </td>
+                    <td class="p-3 text-right">
+                        <button onclick="deleteLead('${l.id}')" class="text-rose-400 hover:underline">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function deleteLead(id) {
+            AppState.leads = AppState.leads.filter(l => l.id !== id);
+            localStorage.setItem('exitkaro_leads', JSON.stringify(AppState.leads));
+            renderAdminCRM();
+            showToast("Lead Removed", `Lead ${id} deleted.`);
+        }
+
+        function exportCSV() {
+            let csv = "ID,Date,Name,Phone,City,Locality,PropertyType,Status\n";
+            AppState.leads.forEach(l => {
+                csv += `"${l.id}","${l.date}","${l.name}","${l.phone}","${l.city}","${l.locality}","${l.propertyType}","${l.status}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ExitKaro_Leads_${new Date().toISOString().slice(0,10)}.csv`;
+            a.click();
+            showToast("Export Complete", "Leads exported to CSV file.");
+        }
+
+        function loadPageContent() {
+            const pKey = document.getElementById('acms-select-page').value;
+            const page = AppState.pages[pKey] || DefaultState.pages[pKey];
+            if (page) {
+                document.getElementById('acms-h1').value = page.h1 || '';
+                document.getElementById('acms-intro').value = page.heroSub || page.intro || '';
+                document.getElementById('acms-mortgage-head').value = page.mortgageHead || '';
+                document.getElementById('acms-mortgage-body').value = page.mortgageBody || '';
+                document.getElementById('acms-nophoto-head').value = page.noPhotoHead || '';
+                document.getElementById('acms-nophoto-body').value = page.noPhotoBody || '';
             }
-        };
-    </script>
+        }
 
-    <!-- FORM HANDLERS & ADMIN ENGINE -->
-    <script>
-        const FormHandlers = {
-            nextStepHero: function() {
-                const nameEl = document.getElementById('h-name');
-                const phoneEl = document.getElementById('h-phone');
-                const localityEl = document.getElementById('h-locality');
-
-                if(!nameEl?.value || !phoneEl?.value || !localityEl?.value) {
-                    showToast("Form Incomplete", "Please fill in your Name, Phone Number, and Locality.");
-                    return;
-                }
-
-                document.getElementById('hero-step-1')?.classList.add('hidden');
-                document.getElementById('hero-step-2')?.classList.remove('hidden');
-                const numEl = document.getElementById('hero-step-num');
-                if (numEl) numEl.innerText = "2/2";
-            },
-
-            prevStepHero: function() {
-                document.getElementById('hero-step-2')?.classList.add('hidden');
-                document.getElementById('hero-step-1')?.classList.remove('hidden');
-                const numEl = document.getElementById('hero-step-num');
-                if (numEl) numEl.innerText = "1/2";
-            },
-
-            submitHeroLead: function(e) {
-                if (e && e.preventDefault) e.preventDefault();
-                const leadData = {
-                    id: "EK-" + Math.floor(1000 + Math.random() * 9000),
-                    date: new Date().toISOString().slice(0, 10),
-                    name: document.getElementById('h-name')?.value || 'N/A',
-                    phone: document.getElementById('h-phone')?.value || 'N/A',
-                    city: document.getElementById('h-city')?.value || 'Noida',
-                    locality: document.getElementById('h-locality')?.value || 'N/A',
-                    propertyType: document.getElementById('h-type')?.value || 'Flat / Apartment',
-                    bhk: document.getElementById('h-bhk')?.value || '2 BHK',
-                    estimatedValue: document.getElementById('h-val')?.value || 'N/A',
-                    outstandingLoan: document.getElementById('h-loan')?.value || 'N/A',
-                    monthlyEmi: document.getElementById('h-emi')?.value || 'N/A',
-                    bank: document.getElementById('h-bank')?.value || 'N/A',
-                    preferredCallbackTime: document.getElementById('h-time')?.value || 'Anytime',
-                    status: "New"
-                };
-
-                AppState.leads.unshift(leadData);
-                try {
-                    localStorage.setItem('exitkaro_leads', JSON.stringify(AppState.leads));
-                } catch(err) {}
-
-                showToast("Enquiry Received", "Our team will contact you confidentially.");
-                
-                if (document.getElementById('h-name')) document.getElementById('h-name').value = '';
-                if (document.getElementById('h-phone')) document.getElementById('h-phone').value = '';
-                if (document.getElementById('h-locality')) document.getElementById('h-locality').value = '';
-                this.prevStepHero();
-            },
-
-            submitDedicatedSellForm: function(e) {
-                if (e && e.preventDefault) e.preventDefault();
-                const leadData = {
-                    id: "EK-" + Math.floor(1000 + Math.random() * 9000),
-                    date: new Date().toISOString().slice(0, 10),
-                    name: document.getElementById('sp-name')?.value || 'N/A',
-                    phone: document.getElementById('sp-phone')?.value || 'N/A',
-                    city: document.getElementById('sp-city')?.value || 'Noida',
-                    locality: document.getElementById('sp-locality')?.value || 'N/A',
-                    propertyType: "Flat / Apartment",
-                    bhk: "2 BHK",
-                    status: "New"
-                };
-
-                AppState.leads.unshift(leadData);
-                try {
-                    localStorage.setItem('exitkaro_leads', JSON.stringify(AppState.leads));
-                } catch(err) {}
-
-                showToast("Enquiry Recorded", "Thank you! We will reach out shortly.");
-                if (e.target && e.target.reset) e.target.reset();
-            }
-        };
-
-        const AdminEngine = {
-            init: function() {
-                this.renderCRM();
-                this.loadPageContent();
-                this.loadSeoMeta();
-            },
-
-            switchTab: function(tabName) {
-                ['crm', 'content', 'seo', 'blogs', 'faqs', 'settings'].forEach(t => {
-                    document.getElementById(`apanel-${t}`)?.classList.add('hidden');
-                    document.getElementById(`atab-${t}`)?.classList.remove('bg-emerald-700', 'text-white', 'font-extrabold');
-                    document.getElementById(`atab-${t}`)?.classList.add('bg-slate-800', 'text-slate-300');
-                });
-
-                document.getElementById(`apanel-${tabName}`)?.classList.remove('hidden');
-                document.getElementById(`atab-${tabName}`)?.classList.add('bg-emerald-700', 'text-white', 'font-extrabold');
-
-                if (tabName === 'content') this.loadPageContent();
-                if (tabName === 'seo') this.loadSeoMeta();
-            },
-
-            renderCRM: function() {
-                const tbody = document.getElementById('admin-crm-tbody');
-                if(!tbody) return;
-
-                const leads = getSafeArray(AppState.leads, DefaultState.leads);
-
-                tbody.innerHTML = leads.map(l => `
-                    <tr class="border-b border-slate-800 hover:bg-slate-900/50">
-                        <td class="p-3 font-mono text-emerald-400 font-bold">${l.id}<br><span class="text-[10px] text-slate-500">${l.date}</span></td>
-                        <td class="p-3 font-bold text-white">${l.name}</td>
-                        <td class="p-3 text-amber-400 font-mono">${l.phone}</td>
-                        <td class="p-3 text-slate-300">${l.city} (${l.locality})</td>
-                        <td class="p-3 text-[11px] text-slate-400">${l.propertyType} | Loan: ₹${l.outstandingLoan || 'N/A'}</td>
-                        <td class="p-3">
-                            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold text-[10px]">${l.status}</span>
-                        </td>
-                        <td class="p-3 text-right">
-                            <button onclick="AdminEngine.deleteLead('${l.id}')" class="text-rose-400 hover:underline">Delete</button>
-                        </td>
-                    </tr>
-                `).join('');
-            },
-
-            deleteLead: function(id) {
-                AppState.leads = AppState.leads.filter(l => l.id !== id);
-                try {
-                    localStorage.setItem('exitkaro_leads', JSON.stringify(AppState.leads));
-                } catch(e) {}
-                this.renderCRM();
-                showToast("Lead Deleted", `Lead ${id} removed.`);
-            },
-
-            exportCSV: function() {
-                let csv = "ID,Date,Name,Phone,City,Locality,PropertyType,Status\n";
-                const leads = getSafeArray(AppState.leads, DefaultState.leads);
-                leads.forEach(l => {
-                    csv += `"${l.id}","${l.date}","${l.name}","${l.phone}","${l.city}","${l.locality}","${l.propertyType}","${l.status}"\n`;
-                });
-                const blob = new Blob([csv], { type: 'text/csv' });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `ExitKaro_Leads_${new Date().toISOString().slice(0,10)}.csv`;
-                a.click();
-                showToast("Export Complete", "Leads exported to CSV!");
-            },
-
-            loadPageContent: function() {
-                const pSel = document.getElementById('acms-select-page');
-                if(!pSel) return;
-                const pKey = pSel.value;
-                const page = AppState.pages[pKey] || DefaultState.pages[pKey];
-                if(page) {
-                    const h1El = document.getElementById('acms-h1');
-                    const introEl = document.getElementById('acms-intro');
-                    const mortHeadEl = document.getElementById('acms-mortgage-head');
-                    const mortBodyEl = document.getElementById('acms-mortgage-body');
-                    const nophHeadEl = document.getElementById('acms-nophoto-head');
-                    const nophBodyEl = document.getElementById('acms-nophoto-body');
-
-                    if (h1El) h1El.value = page.h1 || '';
-                    if (introEl) introEl.value = page.heroSub || page.intro || '';
-                    if (mortHeadEl) mortHeadEl.value = page.mortgageHead || '';
-                    if (mortBodyEl) mortBodyEl.value = page.mortgageBody || '';
-                    if (nophHeadEl) nophHeadEl.value = page.noPhotoHead || '';
-                    if (nophBodyEl) nophBodyEl.value = page.noPhotoBody || '';
-                }
-            },
-
-            savePageContent: function() {
-                const pSel = document.getElementById('acms-select-page');
-                if(!pSel) return;
-                const pKey = pSel.value;
-                if(AppState.pages[pKey]) {
-                    const h1Val = document.getElementById('acms-h1')?.value || '';
-                    const introVal = document.getElementById('acms-intro')?.value || '';
-                    const mortHeadVal = document.getElementById('acms-mortgage-head')?.value;
-                    const mortBodyVal = document.getElementById('acms-mortgage-body')?.value;
-                    const nophHeadVal = document.getElementById('acms-nophoto-head')?.value;
-                    const nophBodyVal = document.getElementById('acms-nophoto-body')?.value;
-
-                    AppState.pages[pKey].h1 = h1Val;
-                    if(pKey === 'home') {
-                        AppState.pages.home.heroSub = introVal;
-                        if(mortHeadVal) AppState.pages.home.mortgageHead = mortHeadVal;
-                        if(mortBodyVal) AppState.pages.home.mortgageBody = mortBodyVal;
-                        if(nophHeadVal) AppState.pages.home.noPhotoHead = nophHeadVal;
-                        if(nophBodyVal) AppState.pages.home.noPhotoBody = nophBodyVal;
-                    } else {
-                        AppState.pages[pKey].intro = introVal;
-                    }
+        function savePageContent() {
+            const pKey = document.getElementById('acms-select-page').value;
+            if (AppState.pages[pKey]) {
+                AppState.pages[pKey].h1 = document.getElementById('acms-h1').value;
+                if (pKey === 'home') {
+                    AppState.pages.home.heroSub = document.getElementById('acms-intro').value;
+                    AppState.pages.home.mortgageHead = document.getElementById('acms-mortgage-head').value;
+                    AppState.pages.home.mortgageBody = document.getElementById('acms-mortgage-body').value;
+                    AppState.pages.home.noPhotoHead = document.getElementById('acms-nophoto-head').value;
+                    AppState.pages.home.noPhotoBody = document.getElementById('acms-nophoto-body').value;
                     
-                    applyGlobalSettings();
-                    showToast("Content Saved", "Page text published live across website!");
+                    document.getElementById('home-h1-display').innerText = AppState.pages.home.h1;
+                    document.getElementById('home-intro-display').innerText = AppState.pages.home.heroSub;
+                    document.getElementById('mortgage-head-display').innerText = AppState.pages.home.mortgageHead;
+                    document.getElementById('mortgage-body-display').innerText = AppState.pages.home.mortgageBody;
+                    document.getElementById('nophoto-head-display').innerText = AppState.pages.home.noPhotoHead;
+                    document.getElementById('nophoto-body-display').innerText = AppState.pages.home.noPhotoBody;
+                } else {
+                    AppState.pages[pKey].intro = document.getElementById('acms-intro').value;
                 }
-            },
-
-            loadSeoMeta: function() {
-                const pSel = document.getElementById('aseo-select-page');
-                if(!pSel) return;
-                const pKey = pSel.value;
-                const page = AppState.pages[pKey] || DefaultState.pages[pKey];
-                if(page) {
-                    const tEl = document.getElementById('aseo-title');
-                    const dEl = document.getElementById('aseo-desc');
-                    if (tEl) tEl.value = page.seoTitle || '';
-                    if (dEl) dEl.value = page.metaDesc || '';
-                }
-            },
-
-            saveSeoMeta: function() {
-                const pSel = document.getElementById('aseo-select-page');
-                if(!pSel) return;
-                const pKey = pSel.value;
-                if(AppState.pages[pKey]) {
-                    AppState.pages[pKey].seoTitle = document.getElementById('aseo-title')?.value || '';
-                    AppState.pages[pKey].metaDesc = document.getElementById('aseo-desc')?.value || '';
-                    
-                    applyGlobalSettings();
-                    showToast("SEO Saved", "Meta tags updated live!");
-                }
-            },
-
-            addBlog: function() {
-                const title = document.getElementById('ablog-title')?.value;
-                const slug = document.getElementById('ablog-slug')?.value;
-                const excerpt = document.getElementById('ablog-excerpt')?.value;
-                const content = document.getElementById('ablog-content')?.value;
-
-                if(!title || !slug) {
-                    showToast("Form Incomplete", "Blog title and slug are required.");
-                    return;
-                }
-
-                AppState.posts.unshift({
-                    slug: slug,
-                    title: title,
-                    category: "Property Guidance",
-                    date: new Date().toISOString().slice(0,10),
-                    author: "ExitKaro Editorial Team",
-                    authorBio: "Written by the ExitKaro Real Estate Research Group.",
-                    excerpt: excerpt || '',
-                    content: content || ''
-                });
-
                 applyGlobalSettings();
-                showToast("Blog Published", "New blog article is now live!");
-                if(document.getElementById('ablog-title')) document.getElementById('ablog-title').value = '';
-                if(document.getElementById('ablog-slug')) document.getElementById('ablog-slug').value = '';
-                if(document.getElementById('ablog-excerpt')) document.getElementById('ablog-excerpt').value = '';
-                if(document.getElementById('ablog-content')) document.getElementById('ablog-content').value = '';
-            },
-
-            addFAQ: function() {
-                const q = document.getElementById('afaq-q')?.value;
-                const a = document.getElementById('afaq-a')?.value;
-                if(!q || !a) {
-                    showToast("Form Incomplete", "Please fill in both Question and Answer.");
-                    return;
-                }
-
-                AppState.faqs.push({ id: Date.now(), q: q, a: a });
-                applyGlobalSettings();
-                showToast("FAQ Added", "New FAQ question added live!");
-                if(document.getElementById('afaq-q')) document.getElementById('afaq-q').value = '';
-                if(document.getElementById('afaq-a')) document.getElementById('afaq-a').value = '';
-            },
-
-            saveSettings: function() {
-                const phoneVal = document.getElementById('set-phone')?.value;
-                const waVal = document.getElementById('set-wa')?.value;
-                const emailVal = document.getElementById('set-email')?.value;
-                const addrVal = document.getElementById('set-addr')?.value;
-
-                if (phoneVal) AppState.settings.phone = phoneVal;
-                if (waVal) AppState.settings.whatsapp = waVal;
-                if (emailVal) AppState.settings.email = emailVal;
-                if (addrVal) AppState.settings.officeAddress = addrVal;
-
-                applyGlobalSettings();
-                showToast("Contact Info Saved", "Phone & WhatsApp updated across website!");
+                showToast("Copy Published", "Page text updated live across website!");
             }
-        };
-    </script>
+        }
 
-    <!-- ROUTER ENGINE INITIALIZATION -->
-    <script>
-        const router = {
-            navigate: function(path, scroll = true) {
-                const targetPath = path || '/';
-                window.location.hash = targetPath;
-                this.render(targetPath);
-                if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
-                this.updateActiveNav(targetPath);
-            },
-
-            updateActiveNav: function(path) {
-                document.querySelectorAll('header nav a').forEach(a => a.classList.remove('active-nav-link'));
-                if(path === '/' || path === '' || path === '#/') document.getElementById('nav-link-home')?.classList.add('active-nav-link');
-                if(path === '/sell-property') document.getElementById('nav-link-sell')?.classList.add('active-nav-link');
-                if(path === '/how-it-works') document.getElementById('nav-link-how')?.classList.add('active-nav-link');
-                if(path === '/why-exitkaro') document.getElementById('nav-link-why')?.classList.add('active-nav-link');
-                if(path.startsWith('/areas')) document.getElementById('nav-link-areas')?.classList.add('active-nav-link');
-                if(path === '/faqs') document.getElementById('nav-link-faqs')?.classList.add('active-nav-link');
-                if(path.startsWith('/blog')) document.getElementById('nav-link-blog')?.classList.add('active-nav-link');
-            },
-
-            render: function(path) {
-                const viewport = document.getElementById('app-viewport');
-                if (!viewport) return;
-                
-                try {
-                    let cleanPath = (path || '').replace('#', '') || '/';
-                    if (cleanPath === '') cleanPath = '/';
-
-                    if (cleanPath === '/') {
-                        viewport.innerHTML = RenderPages.home();
-                        document.title = (AppState.pages && AppState.pages.home && AppState.pages.home.seoTitle) || DefaultState.pages.home.seoTitle;
-                        const descEl = document.getElementById('head-seo-desc');
-                        if (descEl) descEl.content = (AppState.pages && AppState.pages.home && AppState.pages.home.metaDesc) || DefaultState.pages.home.metaDesc;
-                    } else if (cleanPath === '/sell-property') {
-                        viewport.innerHTML = RenderPages.sellProperty();
-                        document.title = (AppState.pages && AppState.pages.sellProperty && AppState.pages.sellProperty.seoTitle) || DefaultState.pages.sellProperty.seoTitle;
-                    } else if (cleanPath === '/how-it-works') {
-                        viewport.innerHTML = RenderPages.howItWorks();
-                        document.title = (AppState.pages && AppState.pages.howItWorks && AppState.pages.howItWorks.seoTitle) || DefaultState.pages.howItWorks.seoTitle;
-                    } else if (cleanPath === '/why-exitkaro') {
-                        viewport.innerHTML = RenderPages.whyExitkaro();
-                        document.title = (AppState.pages && AppState.pages.whyExitkaro && AppState.pages.whyExitkaro.seoTitle) || DefaultState.pages.whyExitkaro.seoTitle;
-                    } else if (cleanPath === '/faqs') {
-                        viewport.innerHTML = RenderPages.faqs();
-                        document.title = (AppState.pages && AppState.pages.faqs && AppState.pages.faqs.seoTitle) || DefaultState.pages.faqs.seoTitle;
-                    } else if (cleanPath === '/areas') {
-                        viewport.innerHTML = RenderPages.areasDirectory();
-                    } else if (cleanPath.startsWith('/areas/')) {
-                        const slug = cleanPath.replace('/areas/', '');
-                        viewport.innerHTML = RenderPages.locationDetail(slug);
-                    } else if (cleanPath === '/blog') {
-                        viewport.innerHTML = RenderPages.blogList();
-                    } else if (cleanPath.startsWith('/blog/')) {
-                        const slug = cleanPath.replace('/blog/', '');
-                        viewport.innerHTML = RenderPages.blogDetail(slug);
-                    } else if (cleanPath === '/privacy-policy') {
-                        viewport.innerHTML = RenderPages.privacy();
-                    } else if (cleanPath === '/admin') {
-                        viewport.innerHTML = RenderPages.adminDashboard();
-                        AdminEngine.init();
-                    } else {
-                        viewport.innerHTML = RenderPages.home();
-                    }
-                } catch(err) {
-                    console.error("Routing execution fallback:", err);
-                    try {
-                        viewport.innerHTML = RenderPages.home();
-                    } catch(e) {
-                        console.error("Fatal render fallback error", e);
-                    }
-                }
+        function loadSeoMeta() {
+            const pKey = document.getElementById('aseo-select-page').value;
+            const page = AppState.pages[pKey] || DefaultState.pages[pKey];
+            if (page) {
+                document.getElementById('aseo-title').value = page.seoTitle || '';
+                document.getElementById('aseo-desc').value = page.metaDesc || '';
             }
-        };
+        }
 
-        window.addEventListener('hashchange', () => {
-            const rawHash = window.location.hash.replace('#', '') || '/';
-            router.render(rawHash);
-        });
+        function saveSeoMeta() {
+            const pKey = document.getElementById('aseo-select-page').value;
+            if (AppState.pages[pKey]) {
+                AppState.pages[pKey].seoTitle = document.getElementById('aseo-title').value;
+                AppState.pages[pKey].metaDesc = document.getElementById('aseo-desc').value;
+                applyGlobalSettings();
+                showToast("SEO Saved", "Page meta tags updated live!");
+            }
+        }
 
-        window.addEventListener('load', () => {
+        function addBlog() {
+            const title = document.getElementById('ablog-title').value;
+            const slug = document.getElementById('ablog-slug').value;
+            if (!title || !slug) return showToast("Error", "Title and slug are required.");
+
+            AppState.posts.unshift({
+                slug: slug,
+                title: title,
+                category: "Property Guidance",
+                date: new Date().toISOString().slice(0,10),
+                author: "ExitKaro Editorial Team",
+                authorBio: "Written by the ExitKaro Real Estate Research Group.",
+                excerpt: document.getElementById('ablog-excerpt').value || '',
+                content: document.getElementById('ablog-content').value || ''
+            });
             applyGlobalSettings();
-            let rawHash = window.location.hash.replace('#', '');
-            if (!rawHash || rawHash === '') {
-                rawHash = '/';
-                window.location.hash = '/';
+            showToast("Blog Published", "New article published live.");
+        }
+
+        function addFAQ() {
+            const q = document.getElementById('afaq-q').value;
+            const a = document.getElementById('afaq-a').value;
+            if (!q || !a) return showToast("Error", "Both question and answer required.");
+
+            AppState.faqs.push({ id: Date.now(), q: q, a: a });
+            applyGlobalSettings();
+            showToast("FAQ Added", "New FAQ item added live.");
+        }
+
+        function saveSettings() {
+            AppState.settings.phone = document.getElementById('set-phone').value || AppState.settings.phone;
+            AppState.settings.whatsapp = document.getElementById('set-wa').value || AppState.settings.whatsapp;
+            AppState.settings.email = document.getElementById('set-email').value || AppState.settings.email;
+            AppState.settings.officeAddress = document.getElementById('set-addr').value || AppState.settings.officeAddress;
+
+            applyGlobalSettings();
+            showToast("Contacts Saved", "Phone & WhatsApp updated across website!");
+        }
+
+        /* INITIALIZATION ON WINDOW LOAD */
+        window.onload = function() {
+            applyGlobalSettings();
+
+            // Read target hash if user clicked direct link
+            const hash = window.location.hash.replace('#/', '').replace('#', '');
+            if (hash && ['sell', 'how', 'why', 'areas', 'faqs', 'blog', 'privacy', 'admin'].includes(hash)) {
+                navigateTo(hash);
+            } else {
+                navigateTo('home');
             }
-            router.render(rawHash);
+        };
+
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.replace('#/', '').replace('#', '');
+            if (hash && ['home', 'sell', 'how', 'why', 'areas', 'faqs', 'blog', 'privacy', 'admin'].includes(hash)) {
+                navigateTo(hash);
+            }
         });
     </script>
 </body>
