@@ -138,7 +138,7 @@
 
     <!-- MAIN VIEWPORT -->
     <main id="app-viewport" class="flex-1">
-        <!-- Dynamic content injected here -->
+        <!-- Dynamic page content injected here -->
     </main>
 
     <!-- MAIN FOOTER -->
@@ -223,20 +223,15 @@
     </div>
 
     <script>
-        // CENTRAL DATABASE & CMS STATE
-        const AppState = {
-            settings: (function() {
-                try { return JSON.parse(localStorage.getItem('exitkaro_settings')); } catch(e) { return null; }
-            })() || {
+        // DEFAULTS FOR FALLBACK
+        const DefaultState = {
+            settings: {
                 phone: "+91 98765 43210",
                 whatsapp: "+91 98765 43210",
                 email: "support@exitkaro.com",
                 officeAddress: "Sector 62, Noida, Uttar Pradesh 201301",
             },
-
-            pages: (function() {
-                try { return JSON.parse(localStorage.getItem('exitkaro_pages')); } catch(e) { return null; }
-            })() || {
+            pages: {
                 home: {
                     seoTitle: "Sell Your Property in Noida, Ghaziabad & Delhi NCR | ExitKaro",
                     metaDesc: "Facing EMI pressure, an outstanding home loan or changing financial circumstances? ExitKaro helps property owners explore practical options for selling residential property.",
@@ -273,10 +268,7 @@
                     intro: "Get answers to common queries regarding property evaluations, home loans, and our confidential consultation process."
                 }
             },
-
-            leads: (function() {
-                try { return JSON.parse(localStorage.getItem('exitkaro_leads')); } catch(e) { return null; }
-            })() || [
+            leads: [
                 {
                     id: "EK-8091",
                     date: "2026-08-08",
@@ -294,10 +286,7 @@
                     status: "New"
                 }
             ],
-
-            posts: (function() {
-                try { return JSON.parse(localStorage.getItem('exitkaro_posts')); } catch(e) { return null; }
-            })() || [
+            posts: [
                 {
                     slug: "can-you-sell-property-with-home-loan",
                     title: "Can You Sell a Property With an Outstanding Home Loan?",
@@ -320,19 +309,13 @@
                     `
                 }
             ],
-
-            faqs: (function() {
-                try { return JSON.parse(localStorage.getItem('exitkaro_faqs')); } catch(e) { return null; }
-            })() || [
+            faqs: [
                 { id: 1, q: "Can I sell my property if there is an outstanding home loan?", a: "Yes. Many property owners in Noida, Ghaziabad, and Delhi NCR sell residential properties with an active home loan. The outstanding loan balance is settled directly with your bank from the sale proceeds." },
                 { id: 2, q: "What happens if I am struggling to pay my home loan EMI?", a: "If monthly EMI payments are becoming difficult due to job loss, business pressure, or personal circumstances, evaluating your property's market position early allows you to explore selling the property before bank notices accumulate." },
                 { id: 3, q: "Do I need to upload property photos online?", a: "No. ExitKaro does NOT require you to upload any photographs publicly. You simply share basic property information, and our team handles next steps directly." },
                 { id: 4, q: "Which areas in Delhi NCR do you cover?", a: "We actively serve major residential hubs across Noida, Ghaziabad, Delhi, Gurgaon, and Faridabad." }
             ],
-
-            locations: (function() {
-                try { return JSON.parse(localStorage.getItem('exitkaro_locations')); } catch(e) { return null; }
-            })() || [
+            locations: [
                 {
                     slug: "noida",
                     city: "Noida",
@@ -363,6 +346,46 @@
             ]
         };
 
+        // SAFELY INITIALIZE APP STATE WITH FALLBACKS
+        const AppState = {
+            settings: (function() {
+                try {
+                    const parsed = JSON.parse(localStorage.getItem('exitkaro_settings'));
+                    return parsed && typeof parsed === 'object' ? Object.assign({}, DefaultState.settings, parsed) : DefaultState.settings;
+                } catch(e) { return DefaultState.settings; }
+            })(),
+            pages: (function() {
+                try {
+                    const parsed = JSON.parse(localStorage.getItem('exitkaro_pages'));
+                    return parsed && typeof parsed === 'object' && parsed.home ? Object.assign({}, DefaultState.pages, parsed) : DefaultState.pages;
+                } catch(e) { return DefaultState.pages; }
+            })(),
+            leads: (function() {
+                try {
+                    const parsed = JSON.parse(localStorage.getItem('exitkaro_leads'));
+                    return Array.isArray(parsed) && parsed.length > 0 ? parsed : DefaultState.leads;
+                } catch(e) { return DefaultState.leads; }
+            })(),
+            posts: (function() {
+                try {
+                    const parsed = JSON.parse(localStorage.getItem('exitkaro_posts'));
+                    return Array.isArray(parsed) && parsed.length > 0 ? parsed : DefaultState.posts;
+                } catch(e) { return DefaultState.posts; }
+            })(),
+            faqs: (function() {
+                try {
+                    const parsed = JSON.parse(localStorage.getItem('exitkaro_faqs'));
+                    return Array.isArray(parsed) && parsed.length > 0 ? parsed : DefaultState.faqs;
+                } catch(e) { return DefaultState.faqs; }
+            })(),
+            locations: (function() {
+                try {
+                    const parsed = JSON.parse(localStorage.getItem('exitkaro_locations'));
+                    return Array.isArray(parsed) && parsed.length > 0 ? parsed : DefaultState.locations;
+                } catch(e) { return DefaultState.locations; }
+            })()
+        };
+
         function applyGlobalSettings() {
             document.querySelectorAll('.global-phone-val').forEach(el => {
                 if (el) el.innerText = AppState.settings.phone || '';
@@ -386,7 +409,6 @@
             const footerEmail = document.getElementById('footer-email-val');
             if (footerEmail) footerEmail.innerText = AppState.settings.email || '';
 
-            // Save state safely
             try {
                 localStorage.setItem('exitkaro_settings', JSON.stringify(AppState.settings));
                 localStorage.setItem('exitkaro_pages', JSON.stringify(AppState.pages));
@@ -394,7 +416,7 @@
                 localStorage.setItem('exitkaro_faqs', JSON.stringify(AppState.faqs));
                 localStorage.setItem('exitkaro_locations', JSON.stringify(AppState.locations));
             } catch(e) {
-                console.error("Storage write error", e);
+                console.warn("LocalStorage save warning", e);
             }
         }
 
@@ -415,87 +437,10 @@
         }
     </script>
 
-    <!-- ROUTER ENGINE -->
-    <script>
-        const router = {
-            navigate: function(path, scroll = true) {
-                window.location.hash = path;
-                this.render(path);
-                if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
-                this.updateActiveNav(path);
-            },
-
-            updateActiveNav: function(path) {
-                document.querySelectorAll('header nav a').forEach(a => a.classList.remove('active-nav-link'));
-                if(path === '/') document.getElementById('nav-link-home')?.classList.add('active-nav-link');
-                if(path === '/sell-property') document.getElementById('nav-link-sell')?.classList.add('active-nav-link');
-                if(path === '/how-it-works') document.getElementById('nav-link-how')?.classList.add('active-nav-link');
-                if(path === '/why-exitkaro') document.getElementById('nav-link-why')?.classList.add('active-nav-link');
-                if(path.startsWith('/areas')) document.getElementById('nav-link-areas')?.classList.add('active-nav-link');
-                if(path === '/faqs') document.getElementById('nav-link-faqs')?.classList.add('active-nav-link');
-                if(path.startsWith('/blog')) document.getElementById('nav-link-blog')?.classList.add('active-nav-link');
-            },
-
-            render: function(path) {
-                const viewport = document.getElementById('app-viewport');
-                if (!viewport) return;
-                
-                if (path === '' || path === '/') {
-                    viewport.innerHTML = RenderPages.home();
-                    document.title = AppState.pages.home.seoTitle;
-                    const descEl = document.getElementById('head-seo-desc');
-                    if (descEl) descEl.content = AppState.pages.home.metaDesc;
-                } else if (path === '/sell-property') {
-                    viewport.innerHTML = RenderPages.sellProperty();
-                    document.title = AppState.pages.sellProperty.seoTitle;
-                    const descEl = document.getElementById('head-seo-desc');
-                    if (descEl) descEl.content = AppState.pages.sellProperty.metaDesc;
-                } else if (path === '/how-it-works') {
-                    viewport.innerHTML = RenderPages.howItWorks();
-                    document.title = AppState.pages.howItWorks.seoTitle;
-                } else if (path === '/why-exitkaro') {
-                    viewport.innerHTML = RenderPages.whyExitkaro();
-                    document.title = AppState.pages.whyExitkaro.seoTitle;
-                } else if (path === '/faqs') {
-                    viewport.innerHTML = RenderPages.faqs();
-                    document.title = AppState.pages.faqs.seoTitle;
-                } else if (path === '/areas') {
-                    viewport.innerHTML = RenderPages.areasDirectory();
-                } else if (path.startsWith('/areas/')) {
-                    const slug = path.replace('/areas/', '');
-                    viewport.innerHTML = RenderPages.locationDetail(slug);
-                } else if (path === '/blog') {
-                    viewport.innerHTML = RenderPages.blogList();
-                } else if (path.startsWith('/blog/')) {
-                    const slug = path.replace('/blog/', '');
-                    viewport.innerHTML = RenderPages.blogDetail(slug);
-                } else if (path === '/privacy-policy') {
-                    viewport.innerHTML = RenderPages.privacy();
-                } else if (path === '/admin') {
-                    viewport.innerHTML = RenderPages.adminDashboard();
-                    AdminEngine.init();
-                } else {
-                    viewport.innerHTML = RenderPages.home();
-                }
-            }
-        };
-
-        window.addEventListener('hashchange', () => {
-            const path = window.location.hash.replace('#', '') || '/';
-            router.render(path);
-        });
-
-        window.addEventListener('load', () => {
-            applyGlobalSettings();
-            const path = window.location.hash.replace('#', '') || '/';
-            router.navigate(path, false);
-        });
-    </script>
-
     <script>
         const RenderPages = {
             home: function() {
-                const p = AppState.pages.home;
+                const p = AppState.pages.home || DefaultState.pages.home;
                 return `
                     <section class="hero-bg py-12 lg:py-20 border-b border-slate-200">
                         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -720,7 +665,7 @@
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                ${AppState.locations.map(loc => `
+                                ${(AppState.locations || DefaultState.locations).map(loc => `
                                     <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
                                         <h3 class="text-xl font-black text-slate-900">${loc.city}</h3>
                                         <p class="text-xs text-slate-600">${loc.intro}</p>
@@ -736,7 +681,7 @@
             },
 
             sellProperty: function() {
-                const p = AppState.pages.sellProperty;
+                const p = AppState.pages.sellProperty || DefaultState.pages.sellProperty;
                 return `
                     <section class="py-12 bg-slate-50">
                         <div class="max-w-3xl mx-auto px-4">
@@ -765,19 +710,26 @@
             },
 
             howItWorks: function() {
-                const p = AppState.pages.howItWorks;
+                const p = AppState.pages.howItWorks || DefaultState.pages.howItWorks;
                 return `
                     <section class="py-12 bg-white">
                         <div class="max-w-3xl mx-auto px-4 space-y-6">
                             <h1 class="text-2xl font-black text-slate-900">${p.h1}</h1>
                             <p class="text-xs text-slate-600 leading-relaxed">${p.intro}</p>
+                            <div class="space-y-3 text-xs">
+                                <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 1:</strong> Share your basic property details confidentially.</div>
+                                <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 2:</strong> Our team calls to understand your loan status & expectations.</div>
+                                <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 3:</strong> On-ground site evaluation by local team if applicable.</div>
+                                <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 4:</strong> Review property market position & legal documents.</div>
+                                <div class="p-4 bg-slate-50 rounded-2xl border"><strong class="text-emerald-700">Step 5:</strong> Discuss structured property sale options.</div>
+                            </div>
                         </div>
                     </section>
                 `;
             },
 
             whyExitkaro: function() {
-                const p = AppState.pages.whyExitkaro;
+                const p = AppState.pages.whyExitkaro || DefaultState.pages.whyExitkaro;
                 return `
                     <section class="py-12 bg-white">
                         <div class="max-w-3xl mx-auto px-4 space-y-6">
@@ -789,14 +741,14 @@
             },
 
             faqs: function() {
-                const p = AppState.pages.faqs;
+                const p = AppState.pages.faqs || DefaultState.pages.faqs;
                 return `
                     <section class="py-12 bg-white">
                         <div class="max-w-4xl mx-auto px-4 space-y-6">
                             <h1 class="text-2xl font-black text-slate-900">${p.h1}</h1>
                             <p class="text-xs text-slate-600 leading-relaxed">${p.intro}</p>
                             <div class="space-y-4">
-                                ${AppState.faqs.map(f => `
+                                ${(AppState.faqs || DefaultState.faqs).map(f => `
                                     <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-1">
                                         <h4 class="font-bold text-slate-900 text-xs">${f.q}</h4>
                                         <p class="text-xs text-slate-600 leading-relaxed">${f.a}</p>
@@ -814,7 +766,7 @@
                         <div class="max-w-4xl mx-auto px-4 space-y-6">
                             <h1 class="text-2xl font-black">Delhi NCR Regional Service Hubs</h1>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                ${AppState.locations.map(loc => `
+                                ${(AppState.locations || DefaultState.locations).map(loc => `
                                     <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
                                         <h3 class="font-bold text-slate-900 text-sm">${loc.city}</h3>
                                         <p class="text-xs text-slate-600">${loc.intro}</p>
@@ -828,7 +780,8 @@
             },
 
             locationDetail: function(slug) {
-                const loc = AppState.locations.find(l => l.slug === slug) || AppState.locations[0];
+                const locs = AppState.locations || DefaultState.locations;
+                const loc = locs.find(l => l.slug === slug) || locs[0];
                 return `
                     <section class="py-12 bg-slate-50">
                         <div class="max-w-4xl mx-auto px-4 bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
@@ -837,7 +790,7 @@
                             <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
                                 <h4 class="font-bold text-xs text-slate-900 mb-2">Key Localities Covered:</h4>
                                 <div class="flex flex-wrap gap-2 text-xs">
-                                    ${loc.localities.map(l => `<span class="px-2.5 py-1 bg-white border rounded font-semibold">${l}</span>`).join('')}
+                                    ${(loc.localities || []).map(l => `<span class="px-2.5 py-1 bg-white border rounded font-semibold">${l}</span>`).join('')}
                                 </div>
                             </div>
                         </div>
@@ -846,11 +799,12 @@
             },
 
             blogList: function() {
+                const posts = AppState.posts || DefaultState.posts;
                 return `
                     <section class="py-12 bg-slate-50">
                         <div class="max-w-4xl mx-auto px-4 space-y-6">
                             <h1 class="text-2xl font-black">ExitKaro Knowledge Hub</h1>
-                            ${AppState.posts.map(post => `
+                            ${posts.map(post => `
                                 <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-2">
                                     <span class="text-[10px] bg-emerald-50 text-emerald-800 font-bold px-2 py-0.5 rounded">${post.category}</span>
                                     <h2 class="text-lg font-bold text-slate-900">${post.title}</h2>
@@ -864,7 +818,8 @@
             },
 
             blogDetail: function(slug) {
-                const post = AppState.posts.find(p => p.slug === slug) || AppState.posts[0];
+                const posts = AppState.posts || DefaultState.posts;
+                const post = posts.find(p => p.slug === slug) || posts[0];
                 return `
                     <section class="py-12 bg-white">
                         <div class="max-w-3xl mx-auto px-4 space-y-4">
@@ -882,6 +837,7 @@
             },
 
             adminDashboard: function() {
+                const leads = AppState.leads || [];
                 return `
                     <div class="bg-slate-900 text-slate-100 min-h-screen py-8 px-4 sm:px-6 lg:px-8 font-sans">
                         <div class="max-w-7xl mx-auto space-y-6">
@@ -899,7 +855,7 @@
                             <!-- CMS Navigation Tabs -->
                             <div class="flex gap-2 border-b border-slate-800 pb-2 text-xs font-bold overflow-x-auto">
                                 <button onclick="AdminEngine.switchTab('crm')" id="atab-crm" class="px-4 py-2 rounded-xl bg-emerald-700 text-white font-extrabold">
-                                    <i class="fa-solid fa-users mr-1"></i> Leads CRM (${AppState.leads.length})
+                                    <i class="fa-solid fa-users mr-1"></i> Leads CRM (${leads.length})
                                 </button>
                                 <button onclick="AdminEngine.switchTab('content')" id="atab-content" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300">
                                     <i class="fa-solid fa-pen-to-square mr-1"></i> Edit All Page Text
@@ -1201,7 +1157,7 @@
                 const pSel = document.getElementById('acms-select-page');
                 if(!pSel) return;
                 const pKey = pSel.value;
-                const page = AppState.pages[pKey];
+                const page = AppState.pages[pKey] || DefaultState.pages[pKey];
                 if(page) {
                     const h1El = document.getElementById('acms-h1');
                     const introEl = document.getElementById('acms-intro');
@@ -1251,7 +1207,7 @@
                 const pSel = document.getElementById('aseo-select-page');
                 if(!pSel) return;
                 const pKey = pSel.value;
-                const page = AppState.pages[pKey];
+                const page = AppState.pages[pKey] || DefaultState.pages[pKey];
                 if(page) {
                     const tEl = document.getElementById('aseo-title');
                     const dEl = document.getElementById('aseo-desc');
@@ -1333,6 +1289,86 @@
                 showToast("Contact Info Saved", "Phone & WhatsApp updated across website!");
             }
         };
+    </script>
+
+    <!-- ROUTER ENGINE INITIALIZATION -->
+    <script>
+        const router = {
+            navigate: function(path, scroll = true) {
+                window.location.hash = path;
+                this.render(path);
+                if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+                this.updateActiveNav(path);
+            },
+
+            updateActiveNav: function(path) {
+                document.querySelectorAll('header nav a').forEach(a => a.classList.remove('active-nav-link'));
+                if(path === '/') document.getElementById('nav-link-home')?.classList.add('active-nav-link');
+                if(path === '/sell-property') document.getElementById('nav-link-sell')?.classList.add('active-nav-link');
+                if(path === '/how-it-works') document.getElementById('nav-link-how')?.classList.add('active-nav-link');
+                if(path === '/why-exitkaro') document.getElementById('nav-link-why')?.classList.add('active-nav-link');
+                if(path.startsWith('/areas')) document.getElementById('nav-link-areas')?.classList.add('active-nav-link');
+                if(path === '/faqs') document.getElementById('nav-link-faqs')?.classList.add('active-nav-link');
+                if(path.startsWith('/blog')) document.getElementById('nav-link-blog')?.classList.add('active-nav-link');
+            },
+
+            render: function(path) {
+                const viewport = document.getElementById('app-viewport');
+                if (!viewport) return;
+                
+                try {
+                    if (path === '' || path === '/') {
+                        viewport.innerHTML = RenderPages.home();
+                        document.title = (AppState.pages.home && AppState.pages.home.seoTitle) || DefaultState.pages.home.seoTitle;
+                        const descEl = document.getElementById('head-seo-desc');
+                        if (descEl) descEl.content = (AppState.pages.home && AppState.pages.home.metaDesc) || DefaultState.pages.home.metaDesc;
+                    } else if (path === '/sell-property') {
+                        viewport.innerHTML = RenderPages.sellProperty();
+                        document.title = (AppState.pages.sellProperty && AppState.pages.sellProperty.seoTitle) || DefaultState.pages.sellProperty.seoTitle;
+                    } else if (path === '/how-it-works') {
+                        viewport.innerHTML = RenderPages.howItWorks();
+                        document.title = (AppState.pages.howItWorks && AppState.pages.howItWorks.seoTitle) || DefaultState.pages.howItWorks.seoTitle;
+                    } else if (path === '/why-exitkaro') {
+                        viewport.innerHTML = RenderPages.whyExitkaro();
+                        document.title = (AppState.pages.whyExitkaro && AppState.pages.whyExitkaro.seoTitle) || DefaultState.pages.whyExitkaro.seoTitle;
+                    } else if (path === '/faqs') {
+                        viewport.innerHTML = RenderPages.faqs();
+                        document.title = (AppState.pages.faqs && AppState.pages.faqs.seoTitle) || DefaultState.pages.faqs.seoTitle;
+                    } else if (path === '/areas') {
+                        viewport.innerHTML = RenderPages.areasDirectory();
+                    } else if (path.startsWith('/areas/')) {
+                        const slug = path.replace('/areas/', '');
+                        viewport.innerHTML = RenderPages.locationDetail(slug);
+                    } else if (path === '/blog') {
+                        viewport.innerHTML = RenderPages.blogList();
+                    } else if (path.startsWith('/blog/')) {
+                        const slug = path.replace('/blog/', '');
+                        viewport.innerHTML = RenderPages.blogDetail(slug);
+                    } else if (path === '/privacy-policy') {
+                        viewport.innerHTML = RenderPages.privacy();
+                    } else if (path === '/admin') {
+                        viewport.innerHTML = RenderPages.adminDashboard();
+                        AdminEngine.init();
+                    } else {
+                        viewport.innerHTML = RenderPages.home();
+                    }
+                } catch(err) {
+                    console.error("Routing execution error:", err);
+                    viewport.innerHTML = RenderPages.home();
+                }
+            }
+        };
+
+        window.addEventListener('hashchange', () => {
+            const path = window.location.hash.replace('#', '') || '/';
+            router.render(path);
+        });
+
+        window.addEventListener('load', () => {
+            applyGlobalSettings();
+            const path = window.location.hash.replace('#', '') || '/';
+            router.navigate(path, false);
+        });
     </script>
 </body>
 </html>
